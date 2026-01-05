@@ -51,6 +51,14 @@ Learn how to use abi-to-mcp through practical, step-by-step tutorials.
 
     [:octicons-arrow-right-24: Claude Desktop](claude-desktop.md)
 
+-   :material-web:{ .lg .middle } __Web Builder__
+
+    ---
+
+    Generate MCP servers in your browser with security scanning and plain English explanations.
+
+    [:octicons-arrow-right-24: Web Builder](web-builder.md)
+
 </div>
 
 ## Quick Reference

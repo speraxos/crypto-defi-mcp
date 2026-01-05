@@ -89,6 +89,7 @@ docs_dir: docs
 
 nav:
   - Home: index.md
+  - Web Builder: guides/web-builder.md
   - Getting Started:
     - getting-started/index.md
     - Installation: getting-started/installation.md
@@ -106,8 +107,10 @@ nav:
     - Tool Types: concepts/tool-types.md
     - Events & Resources: concepts/events.md
     - Safety Features: concepts/safety.md
+    - Security Scanner: concepts/security-scanner.md
   - Guides:
     - guides/index.md
+    - Web Builder: guides/web-builder.md
     - ERC20 Tokens: guides/erc20-token.md
     - NFT Collections: guides/nft-collection.md
     - DeFi Protocols: guides/defi-protocol.md

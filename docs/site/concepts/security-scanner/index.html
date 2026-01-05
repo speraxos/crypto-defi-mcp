@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Understanding the abi-to-mcp codebase">
+        <meta name="description" content="Detect smart contract risks before connecting your AI agent">
       
       
         <meta name="author" content="nirholas">
       
       
-        <link rel="canonical" href="https://ucai.tech/contributing/architecture/">
+        <link rel="canonical" href="https://ucai.tech/concepts/security-scanner/">
       
       
-        <link rel="prev" href="../development/">
+        <link rel="prev" href="../safety/">
       
       
-        <link rel="next" href="../testing/">
+        <link rel="next" href="../../guides/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Architecture - UCAI</title>
+        <title>Security Scanner - UCAI</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#architecture" class="md-skip">
+        <a href="#security-scanner" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture
+              Security Scanner
             
           </span>
         </div>
@@ -310,11 +310,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../concepts/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -398,13 +400,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../contributing/" class="md-tabs__link">
           
   
   
@@ -907,6 +907,8 @@
       
   
   
+    
+  
   
   
     
@@ -930,22 +932,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../concepts/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -963,13 +966,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -989,7 +992,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/type-mapping/" class="md-nav__link">
+      <a href="../type-mapping/" class="md-nav__link">
         
   
   
@@ -1017,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/tool-types/" class="md-nav__link">
+      <a href="../tool-types/" class="md-nav__link">
         
   
   
@@ -1045,7 +1048,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/events/" class="md-nav__link">
+      <a href="../events/" class="md-nav__link">
         
   
   
@@ -1073,7 +1076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/safety/" class="md-nav__link">
+      <a href="../safety/" class="md-nav__link">
         
   
   
@@ -1098,10 +1101,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../concepts/security-scanner/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Scanner
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1117,6 +1147,220 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk Score
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Risk Score">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scoring-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scoring Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk Categories
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Risk Categories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚨 Critical Risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ High Risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ Medium Risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-low-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ℹ️ Low Risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#positive-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positive Indicators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Builder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxy-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy Contracts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programmatic-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1901,8 +2145,6 @@
       
   
   
-    
-  
   
   
     
@@ -1922,23 +2164,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../contributing/" class="md-nav__link ">
               
   
   
@@ -1956,13 +2197,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1982,7 +2223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/" class="md-nav__link">
+      <a href="../../contributing/development/" class="md-nav__link">
         
   
   
@@ -2007,37 +2248,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../contributing/architecture/" class="md-nav__link">
         
   
   
@@ -2053,358 +2267,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#high-level-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        High-Level Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-model-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Model Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#type-mapping-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Type Mapping Pipeline
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cli-command-architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CLI Command Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-responsibilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module Responsibilities
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Module Responsibilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#core-core" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core (core/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fetchers-fetchers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fetchers (fetchers/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parser-parser" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parser (parser/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mapper-mapper" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mapper (mapper/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generator-generator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Generator (generator/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#runtime-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Runtime (runtime/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cli-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CLI (cli/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Flow
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Data Flow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-fetching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Fetching
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-parsing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Parsing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Mapping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-generation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Generation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-design-decisions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Design Decisions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Design Decisions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-strings-for-large-numbers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Strings for Large Numbers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-simulation-by-default" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Simulation by Default
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-no-embedded-keys" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. No Embedded Keys
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-jinja2-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Jinja2 Templates
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-async-by-default" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Async by Default
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extension-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extension Points
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Extension Points">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#custom-fetchers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Fetchers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#custom-type-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Type Mapping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#custom-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Templates
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#testing-strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing Strategy
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2417,7 +2279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../testing/" class="md-nav__link">
+      <a href="../../contributing/testing/" class="md-nav__link">
         
   
   
@@ -2499,10 +2361,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#high-level-overview" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        High-Level Overview
+        Overview
       
     </span>
   </a>
@@ -2510,121 +2372,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-model-flow" class="md-nav__link">
+  <a href="#risk-score" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Model Flow
+        Risk Score
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#type-mapping-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Type Mapping Pipeline
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cli-command-architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CLI Command Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-responsibilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module Responsibilities
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Module Responsibilities">
+    <nav class="md-nav" aria-label="Risk Score">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#core-core" class="md-nav__link">
+  <a href="#scoring-logic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core (core/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fetchers-fetchers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fetchers (fetchers/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parser-parser" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parser (parser/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mapper-mapper" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mapper (mapper/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generator-generator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Generator (generator/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#runtime-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Runtime (runtime/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cli-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CLI (cli/)
+        Scoring Logic
       
     </span>
   </a>
@@ -2637,22 +2400,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-flow" class="md-nav__link">
+  <a href="#risk-categories" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Flow
+        Risk Categories
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Data Flow">
+    <nav class="md-nav" aria-label="Risk Categories">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-fetching" class="md-nav__link">
+  <a href="#critical-risks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Fetching
+        🚨 Critical Risks
       
     </span>
   </a>
@@ -2660,10 +2423,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-parsing" class="md-nav__link">
+  <a href="#high-risks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Parsing
+        ⚠️ High Risks
       
     </span>
   </a>
@@ -2671,10 +2434,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-mapping" class="md-nav__link">
+  <a href="#medium-risks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Mapping
+        ⚡ Medium Risks
       
     </span>
   </a>
@@ -2682,10 +2445,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-generation" class="md-nav__link">
+  <a href="#i-low-risks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Generation
+        ℹ️ Low Risks
       
     </span>
   </a>
@@ -2698,22 +2461,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-design-decisions" class="md-nav__link">
+  <a href="#positive-indicators" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Design Decisions
+        Positive Indicators
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Key Design Decisions">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-strings-for-large-numbers" class="md-nav__link">
+  <a href="#web-builder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Strings for Large Numbers
+        Web Builder
       
     </span>
   </a>
@@ -2721,43 +2495,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-simulation-by-default" class="md-nav__link">
+  <a href="#api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Simulation by Default
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-no-embedded-keys" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. No Embedded Keys
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-jinja2-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Jinja2 Templates
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-async-by-default" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Async by Default
+        API
       
     </span>
   </a>
@@ -2770,60 +2511,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#extension-points" class="md-nav__link">
+  <a href="#proxy-contracts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extension Points
+        Proxy Contracts
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Extension Points">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#custom-fetchers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Fetchers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#custom-type-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Type Mapping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#custom-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Templates
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#testing-strategy" class="md-nav__link">
+  <a href="#limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing Strategy
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programmatic-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
       
     </span>
   </a>
@@ -2850,555 +2574,368 @@
   
 
 
-<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
-<p>This page explains the architecture and design of abi-to-mcp.</p>
-<h2 id="high-level-overview">High-Level Overview<a class="headerlink" href="#high-level-overview" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>graph TB
-    subgraph Input
-        A[ABI File]
-        B[Etherscan]
-        C[Sourcify]
-    end
-
-    subgraph Fetchers
-        D[FileFetcher]
-        E[EtherscanFetcher]
-        F[SourcifyFetcher]
-    end
-
-    subgraph Parser
-        G[ABIParser]
-        H[FunctionParser]
-        I[EventParser]
-        J[TypeParser]
-    end
-
-    subgraph Mapper
-        K[TypeMapper]
-        L[FunctionMapper]
-        M[EventMapper]
-    end
-
-    subgraph Generator
-        N[ToolGenerator]
-        O[ResourceGenerator]
-        P[ServerGenerator]
-    end
-
-    subgraph Output
-        Q[server.py]
-        R[config.py]
-        S[README.md]
-    end
-
-    A --&gt; D
-    B --&gt; E
-    C --&gt; F
-
-    D --&gt; G
-    E --&gt; G
-    F --&gt; G
-
-    G --&gt; H
-    G --&gt; I
-    G --&gt; J
-
-    H --&gt; L
-    I --&gt; M
-    J --&gt; K
-
-    K --&gt; L
-    K --&gt; M
-
-    L --&gt; N
-    M --&gt; O
-
-    N --&gt; P
-    O --&gt; P
-
-    P --&gt; Q
-    P --&gt; R
-    P --&gt; S</code></pre>
-<h2 id="data-model-flow">Data Model Flow<a class="headerlink" href="#data-model-flow" title="Permanent link">&para;</a></h2>
-<p>This diagram shows how data models transform as they move through the pipeline:</p>
-<pre class="mermaid"><code>flowchart TB
-    subgraph Input["Raw Input"]
-        RAW["JSON ABI\n(List of Dict)"]
-    end
-
-    subgraph ParserModels["Parser Output Models"]
-        ABIParam["ABIParameter"]
-        ABIFunc["ABIFunction"]
-        ABIEvent["ABIEvent"]
-        ABIErr["ABIError"]
-        Parsed["ParsedABI"]
-
-        ABIParam --&gt; ABIFunc
-        ABIParam --&gt; ABIEvent
-        ABIParam --&gt; ABIErr
-        ABIFunc --&gt; Parsed
-        ABIEvent --&gt; Parsed
-        ABIErr --&gt; Parsed
-    end
-
-    subgraph MapperModels["Mapper Output Models"]
-        ToolParam["ToolParameter"]
-        MappedTool["MappedTool"]
-        ResField["ResourceField"]
-        MappedRes["MappedResource"]
-
-        ToolParam --&gt; MappedTool
-        ResField --&gt; MappedRes
-    end
-
-    subgraph GenModels["Generator Output Models"]
-        GenFile["GeneratedFile"]
-        GenServer["GeneratedServer"]
-
-        GenFile --&gt; GenServer
-    end
-
-    RAW --&gt; Parsed
-    ABIFunc --&gt; MappedTool
-    ABIEvent --&gt; MappedRes
-    MappedTool --&gt; GenServer
-    MappedRes --&gt; GenServer
-
-    style Parsed fill:#ff9,stroke:#333,stroke-width:2px
-    style MappedTool fill:#9f9,stroke:#333,stroke-width:2px
-    style MappedRes fill:#9f9,stroke:#333,stroke-width:2px
-    style GenServer fill:#99f,stroke:#333,stroke-width:2px</code></pre>
-<h2 id="type-mapping-pipeline">Type Mapping Pipeline<a class="headerlink" href="#type-mapping-pipeline" title="Permanent link">&para;</a></h2>
-<p>Solidity types are converted to JSON Schema and Python types:</p>
-<pre class="mermaid"><code>flowchart LR
-    subgraph Solidity["Solidity Types"]
-        S1["uint256"]
-        S2["address"]
-        S3["bytes32"]
-        S4["string"]
-        S5["bool"]
-        S6["tuple"]
-        S7["uint256[]"]
-    end
-
-    TM["TypeMapper"]
-
-    subgraph JSONSchema["JSON Schema"]
-        J1["string + pattern"]
-        J2["string + pattern"]
-        J3["string + pattern"]
-        J4["string"]
-        J5["boolean"]
-        J6["object"]
-        J7["array"]
-    end
-
-    subgraph Python["Python Types"]
-        P1["str"]
-        P2["str"]
-        P3["str"]
-        P4["str"]
-        P5["bool"]
-        P6["Dict"]
-        P7["List[str]"]
-    end
-
-    S1 --&gt; TM --&gt; J1 --&gt; P1
-    S2 --&gt; TM --&gt; J2 --&gt; P2
-    S3 --&gt; TM --&gt; J3 --&gt; P3
-    S4 --&gt; TM --&gt; J4 --&gt; P4
-    S5 --&gt; TM --&gt; J5 --&gt; P5
-    S6 --&gt; TM --&gt; J6 --&gt; P6
-    S7 --&gt; TM --&gt; J7 --&gt; P7</code></pre>
-<h2 id="cli-command-architecture">CLI Command Architecture<a class="headerlink" href="#cli-command-architecture" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-    participant User
-    participant CLI as CLI (Typer)
-    participant Fetcher as FetcherRegistry
-    participant Parser as ABIParser
-    participant Mapper as Mapper
-    participant Gen as MCPGenerator
-    participant FS as FileSystem
-
-    User-&gt;&gt;CLI: abi-to-mcp generate 0x...
-    CLI-&gt;&gt;Fetcher: fetch(address, network)
-    Fetcher--&gt;&gt;CLI: FetchResult
-    CLI-&gt;&gt;Parser: parse(abi)
-    Parser--&gt;&gt;CLI: ParsedABI
-    CLI-&gt;&gt;Mapper: map_functions(parsed)
-    Mapper--&gt;&gt;CLI: List[MappedTool]
-    CLI-&gt;&gt;Mapper: map_events(parsed)
-    Mapper--&gt;&gt;CLI: List[MappedResource]
-    CLI-&gt;&gt;Gen: generate(parsed, tools, resources)
-    Gen--&gt;&gt;CLI: GeneratedServer
-    CLI-&gt;&gt;FS: write files
-    FS--&gt;&gt;User: MCP Server files</code></pre>
-<h2 id="module-responsibilities">Module Responsibilities<a class="headerlink" href="#module-responsibilities" title="Permanent link">&para;</a></h2>
-<h3 id="core-core">Core (<code>core/</code>)<a class="headerlink" href="#core-core" title="Permanent link">&para;</a></h3>
-<p>Central definitions used across the project:</p>
+<h1 id="security-scanner">Security Scanner<a class="headerlink" href="#security-scanner" title="Permanent link">&para;</a></h1>
+<p>The UCAI Security Scanner analyzes smart contracts for <strong>50+ risk patterns</strong> before you create an MCP server. It helps you avoid connecting Claude to malicious or risky contracts.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────────────────────┐
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│  🛡️ SECURITY REPORT                                         Score: 72/100    │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├────────────────────────────────────────────────────────────────────────────────┤
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                                                                │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  ⚠️  HIGH RISKS                                                                 │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  ├── Mint Function — Owner may create unlimited tokens                        │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  └── Pausable — Owner can freeze all transfers                                │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│                                                                                │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  ⚡ MEDIUM RISKS                                                               │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│  ├── Proxy Contract — Logic can be upgraded                                   │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│  └── External Calls — Potential reentrancy vector                             │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│                                                                                │
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│  ✅ POSITIVE INDICATORS                                                        │
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  ├── ✓ Contract verified on Etherscan                                         │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│  ├── ✓ Uses OpenZeppelin (audited library)                                    │
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│  └── ✓ Has reentrancy protection                                              │
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│                                                                                │
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>└────────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<h2 id="risk-score">Risk Score<a class="headerlink" href="#risk-score" title="Permanent link">&para;</a></h2>
+<p>The scanner produces a score from <strong>0 to 100</strong>:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
+<th>Score</th>
+<th>Level</th>
+<th>Color</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>config.py</code></td>
-<td>Configuration loading and validation</td>
+<td>80-100</td>
+<td>Safe</td>
+<td>🟢 Green</td>
+<td>Standard patterns, low risk</td>
 </tr>
 <tr>
-<td><code>constants.py</code></td>
-<td>Network definitions, ERC signatures</td>
+<td>60-79</td>
+<td>Caution</td>
+<td>🟡 Yellow</td>
+<td>Some concerns, review before proceeding</td>
 </tr>
 <tr>
-<td><code>exceptions.py</code></td>
-<td>Custom exception classes</td>
+<td>40-59</td>
+<td>Warning</td>
+<td>🟠 Orange</td>
+<td>Multiple risks, proceed carefully</td>
 </tr>
 <tr>
-<td><code>models.py</code></td>
-<td>Data classes (ABIFunction, etc.)</td>
+<td>0-39</td>
+<td>Danger</td>
+<td>🔴 Red</td>
+<td>High risk, likely malicious</td>
 </tr>
 </tbody>
 </table>
-<h3 id="fetchers-fetchers">Fetchers (<code>fetchers/</code>)<a class="headerlink" href="#fetchers-fetchers" title="Permanent link">&para;</a></h3>
-<p>Retrieve ABIs from various sources:</p>
+<h3 id="scoring-logic">Scoring Logic<a class="headerlink" href="#scoring-logic" title="Permanent link">&para;</a></h3>
+<p>Each detected risk reduces the score:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
+<th>Severity</th>
+<th>Points Deducted</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>base.py</code></td>
-<td>ABIFetcher abstract base class</td>
+<td>Critical</td>
+<td>-30</td>
 </tr>
 <tr>
-<td><code>file.py</code></td>
-<td>Load from local JSON files</td>
+<td>High</td>
+<td>-15</td>
 </tr>
 <tr>
-<td><code>etherscan.py</code></td>
-<td>Fetch from Etherscan API</td>
+<td>Medium</td>
+<td>-8</td>
 </tr>
 <tr>
-<td><code>sourcify.py</code></td>
-<td>Fetch from Sourcify</td>
+<td>Low</td>
+<td>-3</td>
 </tr>
 <tr>
-<td><code>registry.py</code></td>
-<td>Auto-detect and route to fetcher</td>
+<td>Info</td>
+<td>-1</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Design Pattern:</strong> Strategy pattern - each fetcher implements <code>ABIFetcher</code> interface.</p>
-<h3 id="parser-parser">Parser (<code>parser/</code>)<a class="headerlink" href="#parser-parser" title="Permanent link">&para;</a></h3>
-<p>Parse raw ABI JSON into structured objects:</p>
+<h2 id="risk-categories">Risk Categories<a class="headerlink" href="#risk-categories" title="Permanent link">&para;</a></h2>
+<h3 id="critical-risks">🚨 Critical Risks<a class="headerlink" href="#critical-risks" title="Permanent link">&para;</a></h3>
+<p>These are the most dangerous patterns that often indicate malicious contracts:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
+<th>Risk</th>
+<th>Pattern</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>abi_parser.py</code></td>
-<td>Main parser orchestrator</td>
+<td>Self-Destruct</td>
+<td><code>selfdestruct</code>, <code>suicide</code></td>
+<td>Contract can be destroyed, draining all funds</td>
 </tr>
 <tr>
-<td><code>function_parser.py</code></td>
-<td>Parse function entries</td>
+<td>Arbitrary Delegatecall</td>
+<td><code>delegatecall(data)</code></td>
+<td>Can execute any code, complete takeover</td>
 </tr>
 <tr>
-<td><code>event_parser.py</code></td>
-<td>Parse event entries</td>
-</tr>
-<tr>
-<td><code>error_parser.py</code></td>
-<td>Parse error entries</td>
-</tr>
-<tr>
-<td><code>type_parser.py</code></td>
-<td>Parse Solidity type strings</td>
+<td>tx.origin Auth</td>
+<td><code>tx.origin</code></td>
+<td>Vulnerable to phishing attacks</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Design Pattern:</strong> Composite - ABIParser delegates to specialized parsers.</p>
-<h3 id="mapper-mapper">Mapper (<code>mapper/</code>)<a class="headerlink" href="#mapper-mapper" title="Permanent link">&para;</a></h3>
-<p>Convert parsed objects to MCP-compatible definitions:</p>
+<h3 id="high-risks">⚠️ High Risks<a class="headerlink" href="#high-risks" title="Permanent link">&para;</a></h3>
+<p>Common rug pull and honeypot indicators:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
+<th>Risk</th>
+<th>Pattern</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>type_mapper.py</code></td>
-<td>Solidity → JSON Schema</td>
+<td>Hidden Mint</td>
+<td><code>function mint()</code></td>
+<td>Owner can create unlimited tokens</td>
 </tr>
 <tr>
-<td><code>function_mapper.py</code></td>
-<td>ABIFunction → MappedTool</td>
+<td>Pause Function</td>
+<td><code>pause()</code>, <code>whenNotPaused</code></td>
+<td>Owner can freeze all transfers</td>
 </tr>
 <tr>
-<td><code>event_mapper.py</code></td>
-<td>ABIEvent → MappedResource</td>
+<td>Blacklist</td>
+<td><code>blacklist</code>, <code>banned</code></td>
+<td>Owner can block specific addresses</td>
 </tr>
 <tr>
-<td><code>schema_builder.py</code></td>
-<td>Build complete schemas</td>
+<td>Adjustable Fees</td>
+<td><code>setFee()</code>, <code>setTax()</code></td>
+<td>Fees can be increased to 100%</td>
+</tr>
+<tr>
+<td>Transaction Limits</td>
+<td><code>maxTx</code>, <code>maxWallet</code></td>
+<td>Limits on buy/sell (honeypot indicator)</td>
+</tr>
+<tr>
+<td>Ownable</td>
+<td><code>Ownable</code> without <code>renounceOwnership</code></td>
+<td>Owner retains control</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Design Pattern:</strong> Builder - incrementally construct schemas.</p>
-<h3 id="generator-generator">Generator (<code>generator/</code>)<a class="headerlink" href="#generator-generator" title="Permanent link">&para;</a></h3>
-<p>Generate Python code for MCP servers:</p>
+<h3 id="medium-risks">⚡ Medium Risks<a class="headerlink" href="#medium-risks" title="Permanent link">&para;</a></h3>
+<p>Potential issues that require careful review:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
+<th>Risk</th>
+<th>Pattern</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>mcp_generator.py</code></td>
-<td>Main generation orchestrator</td>
+<td>Transfer Restrictions</td>
+<td><code>require(!blacklist[])</code></td>
+<td>Transfers may be blocked</td>
 </tr>
 <tr>
-<td><code>tool_generator.py</code></td>
-<td>Generate tool code</td>
+<td>Hardcoded Owner</td>
+<td><code>owner = 0x...</code></td>
+<td>Owner is a fixed address</td>
 </tr>
 <tr>
-<td><code>resource_generator.py</code></td>
-<td>Generate resource code</td>
+<td>External Calls</td>
+<td><code>.call()</code>, <code>.send()</code></td>
+<td>Potential reentrancy if unguarded</td>
 </tr>
 <tr>
-<td><code>server_generator.py</code></td>
-<td>Generate complete server</td>
+<td>Inline Assembly</td>
+<td><code>assembly { }</code></td>
+<td>Low-level code, harder to audit</td>
 </tr>
 <tr>
-<td><code>templates/</code></td>
-<td>Jinja2 templates</td>
+<td>Proxy Pattern</td>
+<td><code>Upgradeable</code>, <code>Proxy</code></td>
+<td>Logic can change after deployment</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Design Pattern:</strong> Template Method - templates define structure, generators fill content.</p>
-<h3 id="runtime-runtime">Runtime (<code>runtime/</code>)<a class="headerlink" href="#runtime-runtime" title="Permanent link">&para;</a></h3>
-<p>Utilities for running generated servers:</p>
+<h3 id="i-low-risks">ℹ️ Low Risks<a class="headerlink" href="#i-low-risks" title="Permanent link">&para;</a></h3>
+<p>Minor issues or common patterns:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
+<th>Risk</th>
+<th>Pattern</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>web3_client.py</code></td>
-<td>Web3 connection management</td>
+<td>Timestamp Dependence</td>
+<td><code>block.timestamp</code></td>
+<td>Minor manipulation by miners</td>
 </tr>
 <tr>
-<td><code>transaction.py</code></td>
-<td>Transaction building</td>
-</tr>
-<tr>
-<td><code>simulator.py</code></td>
-<td>Transaction simulation</td>
-</tr>
-<tr>
-<td><code>signer.py</code></td>
-<td>Transaction signing</td>
-</tr>
-<tr>
-<td><code>gas.py</code></td>
-<td>Gas estimation</td>
+<td>Unchecked Math</td>
+<td><code>unchecked { }</code></td>
+<td>Intentional gas optimization</td>
 </tr>
 </tbody>
 </table>
-<h3 id="cli-cli">CLI (<code>cli/</code>)<a class="headerlink" href="#cli-cli" title="Permanent link">&para;</a></h3>
-<p>Command-line interface:</p>
+<h2 id="positive-indicators">Positive Indicators<a class="headerlink" href="#positive-indicators" title="Permanent link">&para;</a></h2>
+<p>The scanner also detects good practices:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
+<th>Indicator</th>
+<th>Pattern</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>main.py</code></td>
-<td>Typer app and main entry</td>
+<td>✓ Verified</td>
+<td>API response</td>
+<td>Source code publicly verified</td>
 </tr>
 <tr>
-<td><code>commands/generate.py</code></td>
-<td>Generate command</td>
+<td>✓ OpenZeppelin</td>
+<td><code>@openzeppelin</code></td>
+<td>Uses audited library</td>
 </tr>
 <tr>
-<td><code>commands/inspect.py</code></td>
-<td>Inspect command</td>
+<td>✓ Reentrancy Guard</td>
+<td><code>ReentrancyGuard</code></td>
+<td>Protected from reentrancy</td>
 </tr>
 <tr>
-<td><code>commands/validate.py</code></td>
-<td>Validate command</td>
+<td>✓ Safe Math</td>
+<td><code>SafeMath</code>, <code>SafeERC20</code></td>
+<td>Overflow/underflow protection</td>
 </tr>
 <tr>
-<td><code>commands/serve.py</code></td>
-<td>Serve command</td>
+<td>✓ Can Renounce</td>
+<td><code>renounceOwnership</code></td>
+<td>Owner can give up control</td>
 </tr>
 <tr>
-<td><code>utils.py</code></td>
-<td>CLI utilities</td>
+<td>✓ SPDX License</td>
+<td><code>SPDX-License-Identifier</code></td>
+<td>Proper licensing</td>
+</tr>
+<tr>
+<td>✓ Documentation</td>
+<td><code>@notice</code>, <code>@param</code></td>
+<td>NatSpec comments present</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Design Pattern:</strong> Command - each command is a separate function.</p>
-<h2 id="data-flow">Data Flow<a class="headerlink" href="#data-flow" title="Permanent link">&para;</a></h2>
-<h3 id="1-fetching">1. Fetching<a class="headerlink" href="#1-fetching" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">registry</span> <span class="o">=</span> <span class="n">create_default_registry</span><span class="p">()</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">registry</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;0x...&quot;</span><span class="p">)</span>  <span class="c1"># FetchResult</span>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h3 id="web-builder">Web Builder<a class="headerlink" href="#web-builder" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Go to <a href="https://mcp.ucai.tech">mcp.ucai.tech</a></li>
+<li>Enter a contract address</li>
+<li>Click <strong>Fetch ABI</strong> (auto-triggers scan) or <strong>🛡️ Scan</strong></li>
+<li>Review the security report</li>
+<li>Decide whether to proceed</li>
+</ol>
+<h3 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://mcp.ucai.tech/api/analyze<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;address&quot;: &quot;0x...&quot;, &quot;network&quot;: &quot;ethereum&quot;}&#39;</span>
 </span></code></pre></div>
-<p>The registry:
-1. Identifies source type (file, address)
-2. Selects appropriate fetcher
-3. Handles retries and fallbacks
-4. Returns <code>FetchResult</code> with ABI and metadata</p>
-<h3 id="2-parsing">2. Parsing<a class="headerlink" href="#2-parsing" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">parser</span> <span class="o">=</span> <span class="n">ABIParser</span><span class="p">()</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">parsed</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">abi</span><span class="p">)</span>  <span class="c1"># ParsedABI</span>
+<p>Response:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;securityReport&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;overallScore&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">72</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">&quot;riskLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;caution&quot;</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">&quot;risks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hidden-mint&quot;</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mint Function Detected&quot;</span><span class="p">,</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Owner may be able to create unlimited tokens&quot;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">&quot;positives&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">      </span><span class="s2">&quot;✓ Contract is verified on block explorer&quot;</span><span class="p">,</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">      </span><span class="s2">&quot;✓ Uses OpenZeppelin (audited library)&quot;</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h2 id="proxy-contracts">Proxy Contracts<a class="headerlink" href="#proxy-contracts" title="Permanent link">&para;</a></h2>
+<p>The scanner automatically detects proxy contracts and:</p>
+<ol>
+<li>Identifies the implementation address</li>
+<li>Fetches the implementation's source code</li>
+<li>Analyzes the actual logic (not just the proxy)</li>
+</ol>
+<p>This ensures you see the real risks, not just <code>delegatecall</code>.</p>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<p>The security scanner is a <strong>heuristic tool</strong>, not a formal audit:</p>
+<ul>
+<li><strong>False positives:</strong> Some patterns (like <code>mint</code>) are dangerous in tokens but normal in NFTs</li>
+<li><strong>False negatives:</strong> Novel attack vectors may not be detected</li>
+<li><strong>Source required:</strong> Unverified contracts get a "Source Not Available" warning</li>
+<li><strong>No runtime analysis:</strong> Static analysis only, doesn't detect state-dependent issues</li>
+</ul>
+<p><strong>Always DYOR (Do Your Own Research)</strong> before interacting with any smart contract.</p>
+<h2 id="programmatic-access">Programmatic Access<a class="headerlink" href="#programmatic-access" title="Permanent link">&para;</a></h2>
+<p>The scanner logic is available in the <code>security-scanner.ts</code> module:</p>
+<div class="language-typescript highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nx">generateSecurityReport</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nx">analyzeSourceCode</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nx">analyzeAbi</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nx">calculateScore</span><span class="w"> </span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@/lib/security-scanner&#39;</span><span class="p">;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">generateSecurityReport</span><span class="p">(</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nx">address</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nx">sourceCode</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nx">abi</span><span class="p">,</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nx">isVerified</span><span class="p">,</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="nx">contractName</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">);</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">report</span><span class="p">.</span><span class="nx">overallScore</span><span class="p">);</span><span class="w">  </span><span class="c1">// 72</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">report</span><span class="p">.</span><span class="nx">riskLevel</span><span class="p">);</span><span class="w">     </span><span class="c1">// &quot;caution&quot;</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">report</span><span class="p">.</span><span class="nx">risks</span><span class="p">);</span><span class="w">         </span><span class="c1">// [{...}]</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">report</span><span class="p">.</span><span class="nx">positives</span><span class="p">);</span><span class="w">     </span><span class="c1">// [&quot;✓ Verified&quot;, ...]</span>
 </span></code></pre></div>
-<p>The parser:
-1. Iterates over ABI entries
-2. Routes to specialized parser by type
-3. Builds structured objects
-4. Detects ERC standards
-5. Returns <code>ParsedABI</code></p>
-<h3 id="3-mapping">3. Mapping<a class="headerlink" href="#3-mapping" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">type_mapper</span> <span class="o">=</span> <span class="n">TypeMapper</span><span class="p">()</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">func_mapper</span> <span class="o">=</span> <span class="n">FunctionMapper</span><span class="p">(</span><span class="n">type_mapper</span><span class="p">)</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">func_mapper</span><span class="o">.</span><span class="n">map_function</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">parsed</span><span class="o">.</span><span class="n">functions</span><span class="p">]</span>
-</span></code></pre></div>
-<p>The mapper:
-1. Converts each function to MappedTool
-2. Generates JSON Schema for parameters
-3. Creates descriptions
-4. Handles name conversion (camelCase → snake_case)</p>
-<h3 id="4-generation">4. Generation<a class="headerlink" href="#4-generation" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">generator</span> <span class="o">=</span> <span class="n">MCPGenerator</span><span class="p">()</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">server</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">parsed</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">resources</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
-</span></code></pre></div>
-<p>The generator:
-1. Renders Jinja2 templates
-2. Combines tools and resources
-3. Generates config and docs
-4. Returns <code>GeneratedServer</code> with all files</p>
-<h2 id="key-design-decisions">Key Design Decisions<a class="headerlink" href="#key-design-decisions" title="Permanent link">&para;</a></h2>
-<h3 id="1-strings-for-large-numbers">1. Strings for Large Numbers<a class="headerlink" href="#1-strings-for-large-numbers" title="Permanent link">&para;</a></h3>
-<p>All numeric types use JSON strings to preserve precision:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># uint256 as string, not int</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;^[0-9]+$&quot;</span><span class="p">}</span>
-</span></code></pre></div>
-<p><strong>Rationale:</strong> JavaScript's Number.MAX_SAFE_INTEGER is 2^53, but uint256 can be 2^256.</p>
-<h3 id="2-simulation-by-default">2. Simulation by Default<a class="headerlink" href="#2-simulation-by-default" title="Permanent link">&para;</a></h3>
-<p>Write operations simulate before executing:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">simulate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">if</span> <span class="n">simulate</span><span class="p">:</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">simulate_transaction</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</span></code></pre></div>
-<p><strong>Rationale:</strong> Blockchain transactions are irreversible. Simulation prevents accidents.</p>
-<h3 id="3-no-embedded-keys">3. No Embedded Keys<a class="headerlink" href="#3-no-embedded-keys" title="Permanent link">&para;</a></h3>
-<p>Private keys are only read from environment:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">PRIVATE_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PRIVATE_KEY&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<p><strong>Rationale:</strong> Never store secrets in generated code.</p>
-<h3 id="4-jinja2-templates">4. Jinja2 Templates<a class="headerlink" href="#4-jinja2-templates" title="Permanent link">&para;</a></h3>
-<p>Code generation uses templates, not string concatenation:</p>
-<div class="language-jinja highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">@mcp.tool()</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="x">async def </span><span class="cp">{{</span> <span class="nv">tool.name</span> <span class="cp">}}</span><span class="x">(</span><span class="cp">{{</span> <span class="nv">tool.signature</span> <span class="cp">}}</span><span class="x">):</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="x">    &quot;&quot;&quot;</span><span class="cp">{{</span> <span class="nv">tool.description</span> <span class="cp">}}</span><span class="x">&quot;&quot;&quot;</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="x">    ...</span>
-</span></code></pre></div>
-<p><strong>Rationale:</strong> Templates are easier to read, maintain, and customize.</p>
-<h3 id="5-async-by-default">5. Async by Default<a class="headerlink" href="#5-async-by-default" title="Permanent link">&para;</a></h3>
-<p>All I/O operations are async:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FetchResult</span><span class="p">:</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="o">...</span>
-</span></code></pre></div>
-<p><strong>Rationale:</strong> MCP servers are async, and blockchain calls can be slow.</p>
-<h2 id="extension-points">Extension Points<a class="headerlink" href="#extension-points" title="Permanent link">&para;</a></h2>
-<h3 id="custom-fetchers">Custom Fetchers<a class="headerlink" href="#custom-fetchers" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyFetcher</span><span class="p">(</span><span class="n">ABIFetcher</span><span class="p">):</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        <span class="o">...</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">can_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="o">...</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">registry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">MyFetcher</span><span class="p">())</span>
-</span></code></pre></div>
-<h3 id="custom-type-mapping">Custom Type Mapping<a class="headerlink" href="#custom-type-mapping" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyTypeMapper</span><span class="p">(</span><span class="n">TypeMapper</span><span class="p">):</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_json_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parsed_type</span><span class="p">):</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        <span class="k">if</span> <span class="n">my_custom_condition</span><span class="p">:</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>            <span class="k">return</span> <span class="n">my_custom_schema</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_json_schema</span><span class="p">(</span><span class="n">parsed_type</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="custom-templates">Custom Templates<a class="headerlink" href="#custom-templates" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">config</span> <span class="o">=</span> <span class="n">GeneratorConfig</span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">template_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./my-templates&quot;</span><span class="p">)</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">generator</span> <span class="o">=</span> <span class="n">MCPGenerator</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-</span></code></pre></div>
-<h2 id="testing-strategy">Testing Strategy<a class="headerlink" href="#testing-strategy" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Test Type</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Parser</td>
-<td>Unit</td>
-<td><code>tests/unit/test_parser/</code></td>
-</tr>
-<tr>
-<td>Mapper</td>
-<td>Unit</td>
-<td><code>tests/unit/test_mapper/</code></td>
-</tr>
-<tr>
-<td>Fetchers</td>
-<td>Unit (mocked)</td>
-<td><code>tests/unit/test_fetchers/</code></td>
-</tr>
-<tr>
-<td>Generator</td>
-<td>Unit + Snapshot</td>
-<td><code>tests/unit/test_generator/</code></td>
-</tr>
-<tr>
-<td>CLI</td>
-<td>Integration</td>
-<td><code>tests/integration/</code></td>
-</tr>
-<tr>
-<td>End-to-End</td>
-<td>Integration</td>
-<td><code>tests/integration/</code></td>
-</tr>
-</tbody>
-</table>
-<p>See <a href="../testing/">Testing</a> for more details.</p>
+<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
+<p>To add new risk patterns:</p>
+<ol>
+<li>Edit <code>web-v2/src/lib/security-scanner.ts</code></li>
+<li>Add to <code>CRITICAL_PATTERNS</code>, <code>HIGH_PATTERNS</code>, <code>MEDIUM_PATTERNS</code>, or <code>LOW_PATTERNS</code></li>
+<li>Test with known malicious and legitimate contracts</li>
+<li>Submit a PR</li>
+</ol>
+<p>Example:
+<div class="language-typescript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;new-risk&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nx">pattern</span><span class="o">:</span><span class="w"> </span><span class="sr">/dangerousPattern/gi</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Dangerous Pattern&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;This pattern indicates...&quot;</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</span></code></pre></div></p>
 
 
 

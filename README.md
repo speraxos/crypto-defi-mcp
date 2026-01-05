@@ -19,6 +19,51 @@
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-purple.svg)](https://modelcontextprotocol.io)
 [![UCAI Standard](https://img.shields.io/badge/UCAI-Standard-blue.svg)](#-the-ucai-standard)
 
+<p align="center">
+  <a href="https://mcp.ucai.tech"><strong>🌐 Try the Web Builder →</strong></a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://docs.ucai.tech"><strong>📖 Documentation</strong></a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-security-scanner"><strong>🛡️ Security Scanner</strong></a>
+</p>
+
+---
+
+## 🌐 Try It Live — No Install Required
+
+**[mcp.ucai.tech](https://mcp.ucai.tech)** — Generate MCP servers directly in your browser.
+
+```
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                │
+│   🌐 MCP BUILDER                                          [Connect Wallet]    │
+│                                                                                │
+│   ┌─────────────────────────────────────────────────────────────────────────┐  │
+│   │  ⚡ Pro Templates    │    🔧 Custom Contract                            │  │
+│   └─────────────────────────────────────────────────────────────────────────┘  │
+│                                                                                │
+│   🛡️ Security Scanner: Score 87/100 ✅ Low Risk                               │
+│   ├── ✅ Contract verified on Etherscan                                       │
+│   ├── ✅ Uses OpenZeppelin (audited)                                          │
+│   ├── ⚠️  Owner can pause transfers                                           │
+│   └── ⚠️  Mint function detected                                              │
+│                                                                                │
+│   📖 What This Contract Does:                                                  │
+│   "ERC-20 token with standard transfer, approve, and allowance functions."    │
+│                                                                                │
+│   [📥 Download Server]  [🔗 Share Link]  [📋 Copy Config]                      │
+│                                                                                │
+└────────────────────────────────────────────────────────────────────────────────┘
+```
+
+**Features:**
+- 🛡️ **Security Scanner** — Detects rug pulls, honeypots, and 50+ risks before you connect
+- 📖 **Contract Whisperer** — Explains contracts in plain English
+- ⚡ **Pro Templates** — Pre-built bundles for Flash Loans, Arbitrage, Yield Aggregators
+- 🌙 **Dark/Light Mode** — Easy on the eyes
+- 📥 **ZIP Download** — Complete server with `server.py`, `requirements.txt`, `README.md`
+- 🔗 **Share Links** — Send `?address=0x...&network=ethereum` to anyone
+
 ---
 
 ## Overview
@@ -257,6 +302,113 @@ abi-to-mcp generate ./my-contract-abi.json --address 0x... -o ~/my-server
 ```
 
 Any verified contract. Any local ABI. One command.
+
+---
+
+## 🛡️ Security Scanner
+
+Before you connect Claude to a contract, know what you're dealing with. The security scanner analyzes contracts for **50+ risk patterns**:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  🛡️ SECURITY REPORT                                         Score: 42/100    │
+├────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                │
+│  🚨 CRITICAL                                                                   │
+│  ├── Self-Destruct Function — Contract can be destroyed                       │
+│  └── tx.origin Authentication — Vulnerable to phishing                        │
+│                                                                                │
+│  ⚠️  HIGH                                                                       │
+│  ├── Hidden Mint — Owner can create unlimited tokens                          │
+│  ├── Pausable — Owner can freeze all transfers                                │
+│  └── Blacklist — Owner can block specific addresses                           │
+│                                                                                │
+│  ✅ POSITIVES                                                                   │
+│  ├── Contract verified on Etherscan                                           │
+│  ├── Uses OpenZeppelin (audited library)                                      │
+│  └── Has reentrancy protection                                                │
+│                                                                                │
+│  [⚠️ Proceed Anyway]                           [❌ Cancel — Too Risky]          │
+│                                                                                │
+└────────────────────────────────────────────────────────────────────────────────┘
+```
+
+**Risk Detection Categories:**
+
+| Severity | Examples |
+|----------|----------|
+| 🚨 Critical | `selfdestruct`, arbitrary `delegatecall`, `tx.origin` auth |
+| ⚠️ High | Hidden mint, pause, blacklist, adjustable fees, tx limits |
+| ⚡ Medium | Transfer restrictions, external calls, proxy patterns |
+| ℹ️ Low | Timestamp dependence, unchecked math |
+
+**Positive Indicators:**
+- ✅ Contract verified on block explorer
+- ✅ Uses OpenZeppelin
+- ✅ Reentrancy guards
+- ✅ Ownership renounced
+- ✅ NatSpec documentation
+
+**Try it:** [mcp.ucai.tech](https://mcp.ucai.tech) — Enter any contract address and click "🛡️ Scan"
+
+---
+
+## 📖 Contract Whisperer
+
+Don't understand what a contract does? The Contract Whisperer explains it in plain English:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  📖 WHAT THIS CONTRACT DOES                                                    │
+├────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                │
+│  Summary: Uniswap V2 Router — Decentralized token exchange                    │
+│                                                                                │
+│  Main Functions:                                                               │
+│  ├── 📖 getAmountsOut — Calculate expected output for a swap                  │
+│  ├── ✏️ swapExactTokensForTokens — Exchange tokens at market rate             │
+│  ├── ✏️ addLiquidity — Provide liquidity to earn fees                         │
+│  └── 📖 getReserves — Check pool balances                                     │
+│                                                                                │
+│  Permissions:                                                                  │
+│  ├── 🟢 Anyone — Can swap, add/remove liquidity                               │
+│  └── 🟡 Factory — Can create new pairs                                        │
+│                                                                                │
+│  Risk Summary:                                                                 │
+│  "Standard DEX router. No owner privileges. Interacts with external pools     │
+│   which may have their own risks."                                             │
+│                                                                                │
+└────────────────────────────────────────────────────────────────────────────────┘
+```
+
+**Explains:**
+- What the contract does (in one sentence)
+- Main functions and their purpose
+- Who can do what (permissions/roles)
+- Tokenomics (mintable, burnable, fees)
+- Risk summary
+
+---
+
+## ⚡ Pro Templates
+
+Pre-built multi-contract bundles for advanced use cases:
+
+| Template | Contracts | Description |
+|----------|-----------|-------------|
+| **Flash Loan Playground** | Aave V3 Pool, Uniswap Router | Explore flash loans for arbitrage |
+| **Multi-DEX Arbitrage** | Uniswap, Sushiswap, Curve | Compare prices across exchanges |
+| **Yield Aggregator Intel** | Yearn, Convex, Aura | Track yield farming opportunities |
+| **Liquidation Bot Intel** | Aave, Compound | Monitor positions for liquidation |
+| **Base DeFi Starter** | Aerodrome, BaseSwap | L2-native DeFi on Base |
+| **Arbitrum Perps Suite** | GMX, Camelot | Perpetual futures on Arbitrum |
+
+Each bundle downloads as a ZIP with:
+- Multiple `server.py` files (one per contract)
+- Pre-configured `claude_config.json`
+- Sample prompts to get started
+
+**Try it:** [mcp.ucai.tech](https://mcp.ucai.tech) → "⚡ Pro Templates" tab
 
 ---
 

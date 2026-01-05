@@ -49,6 +49,38 @@ UCAI converts Ethereum smart contract ABIs into [Model Context Protocol (MCP)](h
 
 </div>
 
+## 🌐 Try It Online
+
+Don't want to install anything? Use the **[Web Builder](https://mcp.ucai.tech)** to generate MCP servers directly in your browser:
+
+<div class="grid cards" markdown>
+
+-   :material-shield-search:{ .lg .middle } __Security Scanner__
+
+    ---
+
+    Detect rug pulls, honeypots, and 50+ risks before connecting your AI agent.
+
+    [:octicons-arrow-right-24: Learn more](concepts/security-scanner.md)
+
+-   :material-book-open:{ .lg .middle } __Contract Whisperer__
+
+    ---
+
+    Get plain English explanations of what any contract does.
+
+    [:octicons-arrow-right-24: Web Builder guide](guides/web-builder.md)
+
+-   :material-lightning-bolt:{ .lg .middle } __Pro Templates__
+
+    ---
+
+    Pre-built bundles for Flash Loans, Arbitrage, Yield Farming, and more.
+
+    [:octicons-arrow-right-24: Web Builder guide](guides/web-builder.md)
+
+</div>
+
 ## What is MCP?
 
 The Model Context Protocol (MCP) is a standard for connecting AI assistants to external tools and data sources. When you generate an MCP server from a smart contract ABI, Claude can:

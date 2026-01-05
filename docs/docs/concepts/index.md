@@ -52,6 +52,14 @@ abi-to-mcp bridges the gap between smart contracts and AI assistants. To do this
 
     [:octicons-arrow-right-24: Safety](safety.md)
 
+-   :material-shield-search:{ .lg .middle } __Security Scanner__
+
+    ---
+
+    Detect rug pulls, honeypots, and 50+ risks before connecting your AI agent.
+
+    [:octicons-arrow-right-24: Security Scanner](security-scanner.md)
+
 </div>
 
 ## The MCP Protocol
