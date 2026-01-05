@@ -319,10 +319,14 @@ function HomeContent() {
       // Download ZIP
       const blob = await zip.generateAsync({ type: "blob" });
       saveAs(blob, `${serverName.toLowerCase().replace(/\s+/g, "-")}-mcp-server.zip`);
+      
+      // Build preview URL
+      const previewUrl = `/preview?address=${contractAddress}&network=${selectedNetwork}&name=${encodeURIComponent(serverName)}`;
+      
       toast.success("Server generated and downloaded!", {
         action: {
-          label: "Share on 𝕏",
-          onClick: () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Just generated an MCP server for ${serverName} with @UCAI_dev! 🚀\n\nNow Claude can interact with this smart contract directly.\n\nmcp.ucai.tech`)}`, "_blank")
+          label: "View Preview Page",
+          onClick: () => window.open(previewUrl, "_blank")
         }
       });
 
@@ -929,6 +933,8 @@ function HomeContent() {
             </div>
             <div className="flex items-center gap-4">
               <a href="https://github.com/nirholas/UCAI" target="_blank" rel="noopener noreferrer" className="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">GitHub</a>
+              <a href="https://x.com/nichxbt" target="_blank" rel="noopener noreferrer" className="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">𝕏</a>
+              <span>Built by nich</span>
             </div>
           </div>
         </footer>
