@@ -11,7 +11,7 @@
     Any contract. One command. Claude speaks it.
 ```
 
-<!-- mcp-name: io.github.nirholas/UCAI -->
+<!-- mcp-name: io.github.nirholas/abi-to-mcp -->
 
 [![PyPI version](https://badge.fury.io/py/abi-to-mcp.svg)](https://badge.fury.io/py/abi-to-mcp)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)

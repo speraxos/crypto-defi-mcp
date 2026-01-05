@@ -77,6 +77,29 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src/abi_to_mcp"]
 
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "pyproject.toml",
+    "README.md",
+    "LICENSE",
+]
+exclude = [
+    "docs/",
+    "web/",
+    "web-v2/",
+    "ucai/",
+    "examples/",
+    "tests/",
+    "scripts/",
+    ".git/",
+    ".github/",
+    "dist/",
+    "*.pyc",
+    "__pycache__/",
+    "node_modules/",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"
