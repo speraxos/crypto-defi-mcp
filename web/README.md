@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sperax MCP Web
 
-## Getting Started
+**[mcp.sperax.io](https://mcp.sperax.io)** — Web interface for Sperax MCP Server configuration and documentation.
 
-First, run the development server:
+## Features
+
+- 🪙 **Sperax DeFi Gateway** — AI access to USDs, veSPA, Demeter farms, Vault
+- 📊 **54 Tools** — Comprehensive coverage of Sperax protocol
+- 🌙 **Dark/Light Mode** — Toggle between themes
+- ⚡ **Arbitrum One** — Native support for Sperax chain
+- 📖 **Documentation** — Protocol docs and MCP usage guides
+- 🔗 **Quick Setup** — One-click configuration for Claude Desktop & Cursor
+
+## Tech Stack
+
+- **Next.js 16** (App Router, Turbopack)
+- **Tailwind CSS v4** + **shadcn/ui**
+- **RainbowKit** + **wagmi** + **viem** (wallet connection)
+- **next-themes** (dark/light mode)
+- **sonner** (toast notifications)
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── api/            # API routes
+│   ├── layout.tsx      # Root layout with Toaster
+│   └── page.tsx        # Main UI
+├── components/
+│   ├── providers.tsx   # Theme + Wallet providers
+│   └── ui/             # shadcn/ui components
+└── lib/
+    ├── generator.ts    # Configuration generator
+    ├── networks.ts     # Arbitrum chain config
+    └── utils.ts        # Utility functions
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deploy to Vercel:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+vercel --prod
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Or set up automatic deployments from the `main` branch.
 
-## Deploy on Vercel
+## Links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Sperax Protocol](https://sperax.io)
+- [Protocol Docs](https://docs.sperax.io)
+- [Sperax App](https://app.sperax.io)
+- [GitHub](https://github.com/Sperax)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT — see [LICENSE](../LICENSE).

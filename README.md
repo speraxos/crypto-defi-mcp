@@ -1,622 +1,632 @@
-# UCAI — The ABI-to-MCP Server Generator
+<p align="center">
+  <img src="https://sperax.io/assets/logo.svg" alt="Sperax Protocol" width="200"/>
+</p>
 
-```
-    ██╗   ██╗ ██████╗ █████╗ ██╗
-    ██║   ██║██╔════╝██╔══██╗██║
-    ██║   ██║██║     ███████║██║
-    ██║   ██║██║     ██╔══██║██║
-    ╚██████╔╝╚██████╗██║  ██║██║
-     ╚═════╝  ╚═════╝╚═╝  ╚═╝╚═╝
-                                
-    Any contract. One command. Claude speaks it.
-```
-
-<!-- mcp-name: io.github.nirholas/abi-to-mcp -->
-
-[![PyPI version](https://badge.fury.io/py/abi-to-mcp.svg)](https://badge.fury.io/py/abi-to-mcp)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-purple.svg)](https://modelcontextprotocol.io)
-[![UCAI Standard](https://img.shields.io/badge/UCAI-Standard-blue.svg)](#-the-ucai-standard)
+<h1 align="center">Sperax MCP Server</h1>
 
 <p align="center">
-  <a href="https://mcp.ucai.tech"><strong>🌐 Try the Web Builder →</strong></a>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="https://docs.ucai.tech"><strong>📖 Documentation</strong></a>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#-security-scanner"><strong>🛡️ Security Scanner</strong></a>
+  <strong>Model Context Protocol Server for Sperax DeFi Ecosystem</strong>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@sperax/mcp-server"><img src="https://img.shields.io/npm/v/@sperax/mcp-server?style=flat-square&color=blue" alt="npm version"/></a>
+  <a href="https://github.com/sperax/sperax-mcp-server/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@sperax/mcp-server?style=flat-square" alt="license"/></a>
+  <a href="https://arbitrum.io"><img src="https://img.shields.io/badge/network-Arbitrum%20One-blue?style=flat-square" alt="network"/></a>
+  <a href="https://docs.sperax.io"><img src="https://img.shields.io/badge/docs-sperax.io-green?style=flat-square" alt="documentation"/></a>
+</p>
+
+<p align="center">
+  Enable AI agents to interact with USDs (auto-yield stablecoin), SPA governance, veSPA staking, and Demeter yield farms on Arbitrum One.
 </p>
 
 ---
 
-## 🌐 Try It Live — No Install Required
-
-**[mcp.ucai.tech](https://mcp.ucai.tech)** — Generate MCP servers directly in your browser.
-
-```
-┌────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                │
-│   🌐 MCP BUILDER                                          [Connect Wallet]    │
-│                                                                                │
-│   ┌─────────────────────────────────────────────────────────────────────────┐  │
-│   │  ⚡ Pro Templates    │    🔧 Custom Contract                            │  │
-│   └─────────────────────────────────────────────────────────────────────────┘  │
-│                                                                                │
-│   🛡️ Security Scanner: Score 87/100 ✅ Low Risk                               │
-│   ├── ✅ Contract verified on Etherscan                                       │
-│   ├── ✅ Uses OpenZeppelin (audited)                                          │
-│   ├── ⚠️  Owner can pause transfers                                           │
-│   └── ⚠️  Mint function detected                                              │
-│                                                                                │
-│   📖 What This Contract Does:                                                  │
-│   "ERC-20 token with standard transfer, approve, and allowance functions."    │
-│                                                                                │
-│   [📥 Download Server]  [🔗 Share Link]  [📋 Copy Config]                      │
-│                                                                                │
-└────────────────────────────────────────────────────────────────────────────────┘
-```
-
-**Features:**
-- 🛡️ **Security Scanner** — Detects rug pulls, honeypots, and 50+ risks before you connect
-- 📖 **Contract Whisperer** — Explains contracts in plain English
-- ⚡ **Pro Templates** — Pre-built bundles for Flash Loans, Arbitrage, Yield Aggregators
-- 🌙 **Dark/Light Mode** — Easy on the eyes
-- 📥 **ZIP Download** — Complete server with `server.py`, `requirements.txt`, `README.md`
-- 🔗 **Share Links** — Send `?address=0x...&network=ethereum` to anyone
+> ⚠️ **Disclaimer**: This project is an additional product of Sperax and SperaxOS, created for community benefit and Model Context Protocol submission. **This is not an official release of SperaxOS.** Its implementation within SperaxOS will be determined prior to SperaxOS launch.
 
 ---
 
-## Overview
+## 🌟 What is Sperax?
 
-```
-  ┌──────────────────────────────────────────────────────────────────────────┐
-  │                                                                          │
-  │   1. FIND                      2. GENERATE                 3. DONE       │
-  │                                                                          │
-  │   ┌─────────────────┐         ┌─────────────────┐     ┌───────────────┐  │
-  │   │   Etherscan     │         │                 │     │               │  │
-  │   │   ┌─────────┐   │         │  $ abi-to-mcp   │     │    Claude     │  │
-  │   │   │ Contract│   │  ────▶  │    generate     │ ──▶ │   🔌 Tools    │  │
-  │   │   │   ABI   │   │         │    0x7a25...    │     │               │  │
-  │   │   └─────────┘   │         │                 │     │  "Swap 1 ETH" │  │
-  │   └─────────────────┘         └─────────────────┘     └───────────────┘  │
-  │                                                                          │
-  │        Any contract              One command             AI speaks it    │
-  │                                                                          │
-  └──────────────────────────────────────────────────────────────────────────┘
-```
+**Sperax** is a DeFi protocol on Arbitrum One featuring **USDs**, an auto-yield stablecoin that automatically generates ~5% APY for holders—no staking, no claiming, no action required. Your balance simply grows.
 
-Found a contract on Etherscan? One command. Claude can now use it.
+### The Vision: Smart Agent Infrastructure for DeFi
 
-```bash
-pip install abi-to-mcp
+SperaxOS represents the next evolution of decentralized finance—an AI-powered financial operating system that replaces intermediaries with autonomous agents. Built on smart contracts and real-time logic, it empowers users to:
 
-# Uniswap — Claude can swap tokens
-abi-to-mcp generate 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D -o ~/uniswap-server
-
-# ETH 2.0 Beacon Deposit — Claude can explore staking
-abi-to-mcp generate 0x00000000219ab540356cBB839Cbe05303d7705Fa -o ~/eth-staking-server
-
-# Any verified contract works
-abi-to-mcp generate <ANY_CONTRACT_ADDRESS>
-```
-
-**That's it.** Every function, every event, every query — now a Claude tool.
+- 🪙 **Earn passive income** with yield-bearing stablecoins
+- 🌍 **Send money globally** in seconds
+- 🏦 **Access institutional tools** without intermediaries
+- 🤖 **Automate finances** from simple payments to complex strategies
 
 ---
 
-## Quick Start
+## ✨ Features
 
-### 1. Generate a server
+| Category | Description |
+|----------|-------------|
+| 🪙 **USDs Stablecoin** | Query balances, yields, rebase mechanics, mint/redeem simulations |
+| ⚡ **Auto-Yield** | ~5% APY distributed automatically via daily rebase |
+| 🗳️ **veSPA Governance** | Vote-escrowed staking with 7-day to 4-year locks |
+| 🌾 **Demeter Farms** | Discover and analyze yield farming opportunities |
+| 🏛️ **Vault System** | Collateral management and yield strategies |
+| 🔮 **Oracle Integration** | Chainlink price feeds and monitoring |
+| 📈 **Yield Reserve** | Protocol yield collection and distribution |
 
-```bash
-abi-to-mcp generate 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D -o ~/uniswap-server
-cd ~/uniswap-server && pip install -r requirements.txt
-```
+### 📊 Server Capabilities
 
-### 2. Connect to Claude Desktop
+| Capability | Count | Description |
+|------------|-------|-------------|
+| **Tools** | 57 | Comprehensive protocol interaction capabilities across 9 categories |
+| **Resources** | 11 | Complete documentation and contract references |
+| **Prompts** | 19 | Pre-built conversation starters for common tasks |
 
-Add to your config (`~/Library/Application Support/Claude/claude_desktop_config.json` on Mac):
+---
+
+## 🚀 Quick Start
+
+### Claude Desktop
+
+Add to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
-    "uniswap": {
-      "command": "python",
-      "args": ["/Users/YOU/uniswap-server/server.py"],
+    "sperax": {
+      "command": "npx",
+      "args": ["-y", "@sperax/mcp-server"]
+    }
+  }
+}
+```
+
+**Config file locations:**
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+- **Linux**: `~/.config/claude/claude_desktop_config.json`
+
+### Cursor / VS Code
+
+Add to your MCP settings:
+
+```json
+{
+  "mcp.servers": {
+    "sperax": {
+      "command": "npx",
+      "args": ["-y", "@sperax/mcp-server"]
+    }
+  }
+}
+```
+
+### With Custom RPC Endpoint
+
+For better performance and reliability, use your own Arbitrum RPC:
+
+```json
+{
+  "mcpServers": {
+    "sperax": {
+      "command": "npx",
+      "args": ["-y", "@sperax/mcp-server"],
       "env": {
-        "RPC_URL": "https://eth.llamarpc.com"
+        "ARBITRUM_RPC_URL": "https://your-rpc-endpoint.com"
       }
     }
   }
 }
 ```
 
-### 3. Ask Claude anything
+### HTTP Server Mode
 
-- *"What's the best route to swap 1 ETH for USDC?"*
-- *"Get the reserves for the ETH/DAI pool"*
-- *"Show me recent swaps on Uniswap"*
-
-**Claude now speaks DeFi.**
-
----
-
-## Example
-
-```
-┌────────────────────────────────────────────────────────────────────────────┐
-│  YOU                                                                       │
-├────────────────────────────────────────────────────────────────────────────┤
-│  "What's the best route to swap 1 ETH for USDC on Uniswap?"               │
-└────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────────┐
-│  CLAUDE                                                                    │
-├────────────────────────────────────────────────────────────────────────────┤
-│  I'll check the Uniswap router for the best path...                       │
-│                                                                            │
-│  ✅ Called: getAmountsOut(1 ETH, [WETH, USDC])                            │
-│                                                                            │
-│  Best route: ETH → WETH → USDC                                            │
-│  You would receive: 3,847.23 USDC                                         │
-│  Price impact: 0.02%                                                       │
-└────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────────┐
-│  YOU                                                                       │
-├────────────────────────────────────────────────────────────────────────────┤
-│  "Do it. Swap 1 ETH for USDC."                                            │
-└────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────────┐
-│  CLAUDE                                                                    │
-├────────────────────────────────────────────────────────────────────────────┤
-│  🔒 Simulating transaction first...                                        │
-│                                                                            │
-│  ✅ Simulation successful                                                  │
-│  Gas estimate: 152,847 (~$3.42)                                           │
-│  Expected output: 3,847.23 USDC                                           │
-│                                                                            │
-│  Ready to execute. Confirm? [Yes/No]                                       │
-└────────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## The UCAI Standard
-
-**UCAI** (Universal Contract AI Interface) is a standard for how AI agents interact with smart contracts.
-
-```
-╔═══════════════════════════════════════════════════════════════════════════════╗
-║                                                                               ║
-║   ┌─────────┐      ┌──────────────┐      ┌──────────────┐      ┌──────────┐  ║
-║   │         │      │              │      │              │      │          │  ║
-║   │  Claude │─────▶│  abi-to-mcp  │─────▶│  MCP Server  │─────▶│  Chain   │  ║
-║   │         │      │   generate   │      │ (your tools) │      │   ⛓️     │  ║
-║   └─────────┘      └──────────────┘      └──────────────┘      └──────────┘  ║
-║        │                                        │                     │      ║
-║        │              "swap 1 ETH"              │    call swap()      │      ║
-║        └────────────────────────────────────────┴─────────────────────┘      ║
-║                                                                               ║
-╚═══════════════════════════════════════════════════════════════════════════════╝
-```
-
-**UCAI defines**
-- 📋 **Tool schemas** — How contract functions become AI-callable tools
-- 🔄 **Type mappings** — Solidity → JSON Schema → Python
-- 🔒 **Safety patterns** — Simulation-first for all state changes
-- 📡 **Event queries** — Historical data access patterns
-
-**Why UCAI**
-- 🔁 **Repeatable** — Same pattern works for ERC20, ERC721, DeFi, DAOs, Solana, anything
-- 🔒 **Safe by default** — All write operations simulate first
-- 🌐 **Universal** — Works on any chain, with any AI agent
-- 🤖 **AI-native** — Designed specifically for LLM tool-calling
-
-Every contract becomes AI-accessible through the same interface. No custom code per contract.
-
-*This package (`abi-to-mcp`) is the reference implementation of UCAI for MCP.*
-
----
-
-## Why UCAI?
-
-**The Problem:** You want AI to interact with smart contracts. But:
-- Writing MCP server boilerplate is tedious
-- Mapping Solidity types to JSON Schema is error-prone  
-- Every contract needs the same patterns repeated
-- Safety (simulation, gas limits) is easy to forget
-
-**The Solution:** One command generates a production-ready MCP server from any ABI.
-
-| Manual Approach | With abi-to-mcp |
-|-----------------|-----------------|
-| Read contract ABI | `abi-to-mcp generate 0x...` |
-| Write 15+ tool functions | ✅ Auto-generated |
-| Map types (address → string, uint256 → string) | ✅ Handled |
-| Add transaction simulation | ✅ Built-in |
-| Handle events as resources | ✅ Included |
-| **~2-4 hours per contract** | **~10 seconds** |
-
----
-
-## Use Cases
-
-- **AI Agent Builders** — Give your agent DeFi superpowers (swap, lend, vote)
-- **Wallet Developers** — Let Claude explain and execute transactions
-- **DAO Tooling** — AI-powered proposal creation, voting, treasury management
-- **DeFi Dashboards** — Natural language queries for on-chain data
-- **Vibecoders** — Ship faster with AI-generated blockchain tools
-
----
-
-## Real Examples
-
-### 🦄 Uniswap: Swap tokens with natural language
+For advanced integrations, run as an HTTP server:
 
 ```bash
-abi-to-mcp generate 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D -o ~/uniswap-server
+# Start HTTP server on port 3000
+pnpm start:http
+
+# Or with custom port
+PORT=8080 pnpm start:http
 ```
-
-Now ask Claude:
-> *"What's the current rate for swapping 10 ETH to USDC?"*
-
-Claude calls `getAmountsOut()` and responds:
-> *"10 ETH → 38,472.31 USDC via the WETH/USDC pool. Want me to simulate the swap?"*
 
 ---
 
-### 🏦 Aave: Check your health factor
+## 🛠️ Available Tools
+
+### USDs Stablecoin (7 tools)
+
+| Tool | Description |
+|------|-------------|
+| `usds_get_info` | Get USDs overview including supply, APR, and last rebase time |
+| `usds_get_balance` | Get USDs balance and rebase state for any address |
+| `usds_get_rebase_state` | Check if an address receives yield rebases |
+| `usds_get_mint_params` | Get current mint fees and parameters |
+| `usds_get_yield_info` | Get current yield metrics, APR, and distribution |
+| `usds_get_collateral_ratio` | Get protocol collateralization ratio |
+| `usds_estimate_mint` | Simulate minting USDs with specific collateral |
+
+### Vault & Collateral (10 tools)
+
+| Tool | Description |
+|------|-------------|
+| `vault_get_status` | Get Vault TVL, health status, utilization, and fees |
+| `vault_get_collaterals` | List all supported collaterals with current allocations |
+| `vault_get_collateral_details` | Get detailed info for specific collateral (USDC, USDT, DAI, FRAX) |
+| `vault_get_strategies` | List all active yield strategies and their performance |
+| `vault_get_strategy_details` | Get specific strategy allocation and APY |
+| `vault_get_oracle_prices` | Get all collateral oracle prices from Chainlink |
+| `vault_get_peg_status` | Check USDs peg health and deviation from $1 |
+| `vault_simulate_mint` | Simulate mint with fees and expected output |
+| `vault_simulate_redeem` | Simulate redemption with fees and slippage |
+| `vault_get_allocation_targets` | Get target vs actual collateral allocations |
+
+### SPA & Staking (8 tools)
+
+| Tool | Description |
+|------|-------------|
+| `spa_get_info` | Get SPA token overview including supply and staking stats |
+| `spa_get_balance` | Get SPA, veSPA, and xSPA balances for address |
+| `vespa_get_position` | Get veSPA lock position details and voting power |
+| `vespa_calculate_power` | Calculate voting power for specific lock amount/duration |
+| `vespa_get_stats` | Get global veSPA statistics (total locked, holders) |
+| `xspa_get_position` | Get xSPA vesting position and pending redemptions |
+| `xspa_calculate_redemption` | Calculate SPA output for xSPA redemption |
+| `buyback_get_stats` | Get SPA buyback & burn statistics |
+
+### Demeter Farms (7 tools)
+
+| Tool | Description |
+|------|-------------|
+| `demeter_list_farms` | List all active farms with APR, TVL, and filters |
+| `demeter_get_farm_details` | Get specific farm detailed info and mechanics |
+| `demeter_get_user_position` | Get user's positions across all Demeter farms |
+| `demeter_calculate_rewards` | Calculate pending rewards for user in farm |
+| `demeter_estimate_apr` | Estimate APR for specific deposit amount |
+| `demeter_get_top_farms` | Get highest APR farms with optional filters |
+| `demeter_get_farm_types` | Get supported farm types (UniV3, Camelot, Balancer) |
+
+### Dripper (5 tools)
+
+| Tool | Description |
+|------|-------------|
+| `dripper_get_status` | Get Dripper operational status and health |
+| `dripper_get_balance` | Get pending yield balance waiting to be distributed |
+| `dripper_get_config` | Get drip period and distribution configuration |
+| `dripper_estimate_next_rebase` | Estimate next rebase time and expected amount |
+| `dripper_calculate_earnings` | Calculate projected earnings for USDs holdings |
+
+### Oracle (5 tools)
+
+| Tool | Description |
+|------|-------------|
+| `oracle_get_all_prices` | Get all collateral prices from Chainlink oracles |
+| `oracle_get_price` | Get specific asset price with timestamp |
+| `oracle_check_staleness` | Check if oracle data is fresh (within heartbeat) |
+| `oracle_check_deviation` | Check price deviation from $1 peg |
+| `oracle_get_sources` | Get oracle source information and configuration |
+
+### Analytics (6 tools)
+
+| Tool | Description |
+|------|-------------|
+| `analytics_get_tvl` | Get Total Value Locked breakdown by component |
+| `analytics_get_revenue` | Get protocol revenue metrics and trends |
+| `analytics_get_apy_history` | Get historical APY data (7d, 30d, 90d, 1y) |
+| `analytics_get_user_stats` | Get comprehensive user statistics |
+| `analytics_compare_yields` | Compare USDs yields with competitors (Aave, Compound) |
+| `analytics_get_protocol_health` | Get overall protocol health score and indicators |
+
+### Governance (5 tools)
+
+| Tool | Description |
+|------|-------------|
+| `governance_get_overview` | Get governance overview and current state |
+| `governance_get_proposals` | List recent/active governance proposals |
+| `governance_get_proposal_details` | Get specific proposal details and voting status |
+| `governance_get_voting_power` | Get voting power for address (veSPA-based) |
+| `governance_get_delegates` | Get delegation information for address |
+
+### Yield Reserve (4 tools)
+
+| Tool | Description |
+|------|-------------|
+| `yield_reserve_get_status` | Get yield reserve status and balance |
+| `yield_reserve_get_balance` | Get available yield for distribution |
+| `yield_reserve_get_config` | Get reserve configuration parameters |
+| `yield_reserve_get_history` | Get historical yield collection data |
+
+---
+
+## 📚 Available Resources
+
+| Resource URI | Description |
+|--------------|-------------|
+| `sperax://docs/overview` | Complete protocol overview and architecture |
+| `sperax://docs/usds` | USDs stablecoin documentation and mechanics |
+| `sperax://docs/staking` | veSPA/xSPA staking guide with formulas |
+| `sperax://docs/demeter` | Demeter yield farming guide |
+| `sperax://docs/vault` | Vault and collateral management documentation |
+| `sperax://docs/oracles` | Oracle system documentation and addresses |
+| `sperax://docs/governance` | DAO governance guide and voting |
+| `sperax://docs/security` | Security audits and bug bounty program |
+| `sperax://docs/formulas` | Key protocol formulas and calculations |
+| `sperax://docs/api` | Complete API reference for all tools |
+| `sperax://contracts/addresses` | All deployed contract addresses on Arbitrum |
+
+---
+
+## 💬 Available Prompts
+
+| Prompt | Description |
+|--------|-------------|
+| `what_is_usds` | Learn about USDs auto-yield stablecoin |
+| `how_to_mint` | Step-by-step guide for minting USDs |
+| `how_to_redeem` | Guide for redeeming USDs to stablecoins |
+| `my_usds_balance` | Check USDs balance and yield info |
+| `my_yield_earnings` | Calculate potential yield earnings |
+| `stake_spa` | Guide for staking SPA to get veSPA |
+| `my_staking_position` | Check veSPA staking position |
+| `best_yield_farms` | Find the best Demeter yield farms |
+| `my_farm_rewards` | Check pending farm rewards |
+| `protocol_health` | Get overall protocol health report |
+| `spa_tokenomics` | Explain SPA token economics |
+| `compare_yields` | Compare USDs yield to other options |
+| `rebase_calculator` | Calculate potential rebase earnings |
+| `vespa_calculator` | Calculate veSPA voting power |
+
+---
+
+## 💡 Example Conversations
+
+### Check USDs Yield
+
+> **User:** "What's the current USDs APY and how much would I earn on $10,000?"
+>
+> **Agent:** *Uses `usds_get_yield_info` and calculates projections*
+
+### Find Best Farms
+
+> **User:** "Show me Demeter farms with over 20% APR"
+>
+> **Agent:** *Uses `demeter_get_top_farms` with minApr filter*
+
+### Calculate veSPA Power
+
+> **User:** "How much voting power would I get locking 1000 SPA for 2 years?"
+>
+> **Agent:** *Uses `vespa_calculate_power` with amount=1000, days=730*
+
+### Protocol Health Check
+
+> **User:** "Give me an overview of the Sperax protocol health"
+>
+> **Agent:** *Uses multiple tools to compile health dashboard*
+
+### Portfolio Analysis
+
+> **User:** "Check my USDs balance at 0x..."
+>
+> **Agent:** *Uses `usds_get_balance` and `usds_get_yield_info`*
+
+---
+
+## 📐 Key Protocol Formulas
+
+### veSPA Voting Power
+
+```
+veSPA = SPA × (lockDays / 365)
+```
+
+| Lock Duration | 1000 SPA → veSPA |
+|---------------|------------------|
+| 7 days | 19.2 veSPA |
+| 1 year | 1,000 veSPA |
+| 2 years | 2,000 veSPA |
+| 4 years | 4,000 veSPA |
+
+> ⚠️ **Note:** Voting power decays linearly as unlock time approaches. No early unlock!
+
+### xSPA Redemption
+
+```
+SPA_out = xSPA × (vestingDays + 150) / 330
+```
+
+| Vesting Period | SPA Received |
+|----------------|--------------|
+| 15 days (min) | 50% |
+| 30 days | 54.5% |
+| 90 days | 72.7% |
+| 180 days (max) | 100% |
+
+### USDs Rebase (Auto-Yield)
+
+USDs uses a credit system for automatic yield distribution:
+
+```
+balance = credits / creditsPerToken
+```
+
+When yield is distributed:
+1. Protocol collects yield from strategies (Aave, Compound, Stargate, Fluid)
+2. 70% is distributed to USDs holders via rebase
+3. `creditsPerToken` decreases globally
+4. Your balance increases automatically!
+
+**No claiming required. Your wallet balance grows daily.**
+
+---
+
+## 🏗️ Protocol Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         SPERAX PROTOCOL                         │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
+│  │   USDs      │◄───│   Vault     │───►│  Strategies │         │
+│  │ Stablecoin  │    │  (TVL Hub)  │    │ Aave/Comp/  │         │
+│  │  ~5% APY    │    │             │    │  Stargate   │         │
+│  └─────────────┘    └─────────────┘    └─────────────┘         │
+│         ▲                  │                   │                │
+│         │                  ▼                   ▼                │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
+│  │   Dripper   │◄───│Yield Reserve│◄───│   Oracles   │         │
+│  │ (Daily Drip)│    │ (70%/30%)   │    │ (Chainlink) │         │
+│  └─────────────┘    └─────────────┘    └─────────────┘         │
+│         │                  │                                    │
+│         ▼                  ▼                                    │
+│  ┌─────────────┐    ┌─────────────┐                            │
+│  │   Rebase    │    │ SPA Buyback │                            │
+│  │  (70% →     │    │   (30% →    │                            │
+│  │   Holders)  │    │    Burn)    │                            │
+│  └─────────────┘    └─────────────┘                            │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│                      GOVERNANCE LAYER                           │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
+│  │    SPA      │───►│   veSPA     │───►│  Governance │         │
+│  │   Token     │    │   (Locked)  │    │  (Snapshot) │         │
+│  └─────────────┘    └─────────────┘    └─────────────┘         │
+│         │                                                       │
+│         ▼                                                       │
+│  ┌─────────────┐    ┌─────────────┐                            │
+│  │   xSPA      │───►│   Demeter   │                            │
+│  │  (Rewards)  │    │   (Farms)   │                            │
+│  └─────────────┘    └─────────────┘                            │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📋 Contract Addresses (Arbitrum One)
+
+### Core Protocol
+
+| Contract | Address |
+|----------|---------|
+| USDs Token | `0xD74f5255D557944cf7Dd0E45FF521520002D5748` |
+| SPA Token | `0x5575552988A3A80504bBaeB1311674fCFd40aD4B` |
+| Vault | `0x6Bbc476Ee35CBA9e9c3A59fc5b10d7a0BC6f74Ca` |
+| Collateral Manager | `0xdA6B48BA29fE5F0f32eB52FBA21D26DACA04E5e7` |
+
+### Staking
+
+| Contract | Address |
+|----------|---------|
+| veSPA | `0x2e2071180682Ce6C247B1eF93d382D509F5F6A17` |
+| xSPA | `0x0966E72256d6055145902F72F9D3B6a194B9cCc3` |
+
+### Yield Distribution
+
+| Contract | Address |
+|----------|---------|
+| SPA Buyback | `0xFbc0d3cA777722d234FE01dba94DeDeDb277AFe3` |
+| Yield Reserve | `0x0CB89A7A6a9E0d9E06EE0c52De040db0e2B079E6` |
+| Dripper | `0xEaA79893D17d4c1b3e76c684e7A89B3D46a6fb03` |
+| Rebase Manager | `0xC21b3b55Db3cb0B6CA6F96c18E9534c96E1d4cfc` |
+
+### Oracles
+
+| Contract | Address |
+|----------|---------|
+| Master Price Oracle | `0x14D99412dAB1878dC01Fe7a1664cdE85896e8E50` |
+| Chainlink Oracle | `0xB9e5A70e1B1F3C99Db6Ed28f67d8d7d1248F8b3B` |
+| SPA Oracle | `0x5Fb534B4B07a0E417B449E264A8c7A6f9C5C2C69` |
+| USDs Oracle | `0x1C27c2a4aD63DE5F44f5a0e7a651e3FC7F3BBBe3` |
+
+### Demeter Protocol
+
+| Contract | Address |
+|----------|---------|
+| Farm Registry | `0x45bC6B44107837E7aBB21E2CaCbe7612Fce222e0` |
+| Rewarder Factory | `0x926477bAF60C25857419CC9Bf52E914881E1bDD3` |
+| Farm Deployer | `0x0d9EFD8f11c0a09DB8C2CCBfF4cC6c26Ad98b956` |
+
+### Yield Strategies
+
+| Contract | Address |
+|----------|---------|
+| Aave Strategy | `0x5E8422345238F34275888049021821E8E08CAa1f` |
+| Compound Strategy | `0x8c9532a60E0E7C6BbD2B2c1303F63aCE1c3e9811` |
+| Stargate Strategy | `0x6cD7bEF920f4C05aF3386A2c0070e1e26CD85c85` |
+| Fluid Strategy | `0xE0f51Ec5f35B0D7Ce31b26b8C15b9B9f3fF1f5C5` |
+
+### Supported Collaterals
+
+| Token | Address | Decimals |
+|-------|---------|----------|
+| USDC (Native) | `0xaf88d065e77c8cC2239327C5EDb3A432268e5831` | 6 |
+| USDC.e (Bridged) | `0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8` | 6 |
+| USDT | `0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9` | 6 |
+| DAI | `0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1` | 18 |
+| FRAX | `0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F` | 18 |
+
+---
+
+## ⚙️ Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `ARBITRUM_RPC_URL` | Arbitrum One RPC endpoint | `https://arb1.arbitrum.io/rpc` |
+| `LOG_LEVEL` | Logging level (`debug`, `info`, `warn`, `error`) | `info` |
+| `PORT` | HTTP server port (for HTTP mode) | `3000` |
+
+---
+
+## 🔧 Development
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
+
+### Setup
 
 ```bash
-abi-to-mcp generate 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2 -o ~/aave-server
+# Clone repository
+git clone https://github.com/sperax/sperax-mcp-server
+cd sperax-mcp-server
+
+# Install dependencies
+pnpm install
+
+# Build TypeScript
+pnpm build
+
+# Run in development mode (with auto-rebuild)
+pnpm dev
 ```
 
-> *"What's my health factor on Aave? Am I at risk of liquidation?"*
-
-Claude reads your position and warns you before it's too late.
-
----
-
-### 🎨 Any NFT: Explore collections
+### Running
 
 ```bash
-abi-to-mcp generate 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D -o ~/bayc-server
+# Start stdio server (for Claude Desktop)
+pnpm start
+
+# Start HTTP server (for integrations)
+pnpm start:http
+
+# Run with custom RPC
+ARBITRUM_RPC_URL="https://..." pnpm start
 ```
 
-> *"Who owns BAYC #8817? How many apes does that wallet have?"*
-
-Claude calls `ownerOf()` and `balanceOf()` to answer.
-
----
-
-### 🔮 Your own contract
+### Testing
 
 ```bash
-abi-to-mcp generate ./my-contract-abi.json --address 0x... -o ~/my-server
+# Run tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Test with MCP Inspector
+npx @modelcontextprotocol/inspector dist/index.js
 ```
 
-Any verified contract. Any local ABI. One command.
-
----
-
-## 🛡️ Security Scanner
-
-Before you connect Claude to a contract, know what you're dealing with. The security scanner analyzes contracts for **50+ risk patterns**:
-
-```
-┌────────────────────────────────────────────────────────────────────────────────┐
-│  🛡️ SECURITY REPORT                                         Score: 42/100    │
-├────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                │
-│  🚨 CRITICAL                                                                   │
-│  ├── Self-Destruct Function — Contract can be destroyed                       │
-│  └── tx.origin Authentication — Vulnerable to phishing                        │
-│                                                                                │
-│  ⚠️  HIGH                                                                       │
-│  ├── Hidden Mint — Owner can create unlimited tokens                          │
-│  ├── Pausable — Owner can freeze all transfers                                │
-│  └── Blacklist — Owner can block specific addresses                           │
-│                                                                                │
-│  ✅ POSITIVES                                                                   │
-│  ├── Contract verified on Etherscan                                           │
-│  ├── Uses OpenZeppelin (audited library)                                      │
-│  └── Has reentrancy protection                                                │
-│                                                                                │
-│  [⚠️ Proceed Anyway]                           [❌ Cancel — Too Risky]          │
-│                                                                                │
-└────────────────────────────────────────────────────────────────────────────────┘
-```
-
-**Risk Detection Categories:**
-
-| Severity | Examples |
-|----------|----------|
-| 🚨 Critical | `selfdestruct`, arbitrary `delegatecall`, `tx.origin` auth |
-| ⚠️ High | Hidden mint, pause, blacklist, adjustable fees, tx limits |
-| ⚡ Medium | Transfer restrictions, external calls, proxy patterns |
-| ℹ️ Low | Timestamp dependence, unchecked math |
-
-**Positive Indicators:**
-- ✅ Contract verified on block explorer
-- ✅ Uses OpenZeppelin
-- ✅ Reentrancy guards
-- ✅ Ownership renounced
-- ✅ NatSpec documentation
-
-**Try it:** [mcp.ucai.tech](https://mcp.ucai.tech) — Enter any contract address and click "🛡️ Scan"
-
----
-
-## 📖 Contract Whisperer
-
-Don't understand what a contract does? The Contract Whisperer explains it in plain English:
-
-```
-┌────────────────────────────────────────────────────────────────────────────────┐
-│  📖 WHAT THIS CONTRACT DOES                                                    │
-├────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                │
-│  Summary: Uniswap V2 Router — Decentralized token exchange                    │
-│                                                                                │
-│  Main Functions:                                                               │
-│  ├── 📖 getAmountsOut — Calculate expected output for a swap                  │
-│  ├── ✏️ swapExactTokensForTokens — Exchange tokens at market rate             │
-│  ├── ✏️ addLiquidity — Provide liquidity to earn fees                         │
-│  └── 📖 getReserves — Check pool balances                                     │
-│                                                                                │
-│  Permissions:                                                                  │
-│  ├── 🟢 Anyone — Can swap, add/remove liquidity                               │
-│  └── 🟡 Factory — Can create new pairs                                        │
-│                                                                                │
-│  Risk Summary:                                                                 │
-│  "Standard DEX router. No owner privileges. Interacts with external pools     │
-│   which may have their own risks."                                             │
-│                                                                                │
-└────────────────────────────────────────────────────────────────────────────────┘
-```
-
-**Explains:**
-- What the contract does (in one sentence)
-- Main functions and their purpose
-- Who can do what (permissions/roles)
-- Tokenomics (mintable, burnable, fees)
-- Risk summary
-
----
-
-## ⚡ Pro Templates
-
-Pre-built multi-contract bundles for advanced use cases:
-
-| Template | Contracts | Description |
-|----------|-----------|-------------|
-| **Flash Loan Playground** | Aave V3 Pool, Uniswap Router | Explore flash loans for arbitrage |
-| **Multi-DEX Arbitrage** | Uniswap, Sushiswap, Curve | Compare prices across exchanges |
-| **Yield Aggregator Intel** | Yearn, Convex, Aura | Track yield farming opportunities |
-| **Liquidation Bot Intel** | Aave, Compound | Monitor positions for liquidation |
-| **Base DeFi Starter** | Aerodrome, BaseSwap | L2-native DeFi on Base |
-| **Arbitrum Perps Suite** | GMX, Camelot | Perpetual futures on Arbitrum |
-
-Each bundle downloads as a ZIP with:
-- Multiple `server.py` files (one per contract)
-- Pre-configured `claude_config.json`
-- Sample prompts to get started
-
-**Try it:** [mcp.ucai.tech](https://mcp.ucai.tech) → "⚡ Pro Templates" tab
-
----
-
-## What Gets Generated?
-
-When you point abi-to-mcp at a contract, it introspects every function and event, then generates tools Claude can call:
-
-| Contract has... | You get... | Claude can... |
-|-----------------|------------|---------------|
-| `balanceOf(address)` | Read tool | *"Check vitalik.eth's USDC balance"* |
-| `swap(path, amount)` | Write tool (simulated) | *"Swap 1 ETH for DAI"* — simulates first, shows you gas |
-| `Transfer` event | Query tool | *"Show me the last 10 transfers over $1M"* |
-| Complex structs | Typed schemas | Handles tuples, arrays, nested data |
-
-**15-30 tools per contract**, fully typed, simulation-protected for writes.
-
-## CLI Reference
-
-### `abi-to-mcp generate`
-
-Generate an MCP server from an ABI.
+### Linting & Type Checking
 
 ```bash
-abi-to-mcp generate <source> [options]
-```
+# Lint code
+pnpm lint
 
-**Arguments:**
-- `source`: ABI file path or contract address
-
-**Options:**
-- `-o, --output PATH`: Output directory (default: `./mcp-server`)
-- `-n, --network TEXT`: Network for address lookups (default: `mainnet`)
-- `-a, --address TEXT`: Contract address (if not in source)
-- `--name TEXT`: Server name (auto-detected if not provided)
-- `--read-only`: Only generate read operations
-- `--no-events`: Exclude events as resources
-- `--no-simulate`: Disable simulation by default for writes
-
-### `abi-to-mcp inspect`
-
-Preview what would be generated without creating files.
-
-```bash
-abi-to-mcp inspect ./token-abi.json
-```
-
-### `abi-to-mcp validate`
-
-Validate an ABI without generating.
-
-```bash
-abi-to-mcp validate ./token-abi.json
-```
-
-## Generated Server Structure
-
-```
-my-mcp-server/
-├── server.py           # Main MCP server
-├── config.py           # Configuration
-├── requirements.txt    # Dependencies
-├── README.md           # Documentation
-├── pyproject.toml      # Package config
-└── .env.example        # Environment template
-```
-
-## Type Mapping
-
-| Solidity Type | JSON Schema | Python Type |
-|---------------|-------------|-------------|
-| `address` | `string` with pattern | `str` |
-| `uint256` | `string` (for precision) | `str` |
-| `uint8-uint32` | `integer` with bounds | `int` |
-| `bool` | `boolean` | `bool` |
-| `string` | `string` | `str` |
-| `bytes` | `string` with pattern | `str` |
-| `bytes32` | `string` with pattern | `str` |
-| `tuple` | `object` | `Dict` |
-| `T[]` | `array` | `List` |
-| `T[N]` | `array` with bounds | `List` |
-
-## Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `RPC_URL` | Web3 RPC endpoint | Yes |
-| `CONTRACT_ADDRESS` | Override contract address | No |
-| `PRIVATE_KEY` | For write operations | For writes |
-| `ETHERSCAN_API_KEY` | For fetching from Etherscan | For Etherscan |
-
-## Supported Networks
-
-| Network | ID | Chain ID |
-|---------|------|----------|
-| `mainnet` | Ethereum | 1 |
-| `sepolia` | Sepolia Testnet | 11155111 |
-| `polygon` | Polygon | 137 |
-| `arbitrum` | Arbitrum One | 42161 |
-| `optimism` | Optimism | 10 |
-| `base` | Base | 8453 |
-| `bsc` | BNB Chain | 56 |
-| `avalanche` | Avalanche C-Chain | 43114 |
-
----
-
-## Security
-
-1. **Private keys** — Only loaded from environment variables, never from files or CLI
-2. **Simulation by default** — Write operations simulate first; set `simulate=False` to execute
-3. **Read-only mode** — Use `--read-only` to completely disable writes
-4. **Gas protection** — Configurable maximum gas price limits
-
----
-
-## Development
-
-```bash
-git clone https://github.com/nirholas/UCAI.git
-cd UCAI
-
-make setup    # Install dependencies
-make test     # Run 876 tests (92% coverage)
-make lint     # Check code quality
-make docs     # Build documentation
+# Type check
+pnpm typecheck
 ```
 
 ---
 
-## Real-World Applications
+## 🔒 Security
 
-### 1. DeFi Portfolio Agent
-```
-"Show me my positions across Uniswap, Aave, and Compound"
-"Swap 1 ETH for USDC if the price is above $3,500"
-```
-Generate servers for each protocol, Claude handles the rest.
+| Feature | Description |
+|---------|-------------|
+| **Read-Only** | No transaction execution—server only reads blockchain state |
+| **No Private Keys** | Server never handles or stores private keys |
+| **Rate Limited** | Built-in RPC rate limiting prevents abuse |
+| **Validated Inputs** | All inputs validated with Zod schemas |
+| **Audited Contracts** | Sperax contracts audited by leading firms |
 
-### 2. DAO Governance Assistant
-```
-"What proposals are active on Nouns DAO?"
-"Draft a proposal to fund the marketing budget"
-"Cast my vote on proposal #47"
-```
+### Security Considerations
 
-### 3. NFT Collection Manager
-```
-"List all my NFTs on Opensea"
-"Transfer Bored Ape #1234 to vitalik.eth"
-"What's the floor price history for CryptoPunks?"
-```
-
-### 4. Wallet Assistant
-```
-"What tokens do I hold?"
-"Send 100 USDC to alice.eth"
-"What did I spend on gas this month?"
-```
+- This server provides **read-only** access to on-chain data
+- Transaction signing must happen through user's wallet
+- Always verify contract addresses before interacting
+- Use official RPC endpoints or trusted providers
 
 ---
 
-## Keywords
+## 📖 How USDs Works
 
-*For SEO and discoverability:*
+### The Auto-Yield Mechanism
 
-**UCAI** • **Universal Contract AI Interface** • **MCP** • **Model Context Protocol** • **Claude** • **AI Agent** • **Smart Contract** • **Ethereum** • **EVM** • **DeFi** • **Web3** • **Solidity** • **ABI** • **Blockchain** • **Token** • **ERC20** • **ERC721** • **NFT** • **DAO** • **Uniswap** • **Aave** • **Polygon** • **Arbitrum** • **Base** • **Optimism** • **LLM Tool** • **AI Blockchain** • **Vibecoding**
+USDs is unique among stablecoins because it generates yield **automatically**:
 
----
+1. **Deposit Collateral** → User deposits USDC, USDT, DAI, or FRAX
+2. **Mint USDs** → Protocol mints USDs 1:1 (minus small fee)
+3. **Deploy to Strategies** → Collateral deployed to Aave, Compound, Stargate, Fluid
+4. **Generate Yield** → Strategies earn yield from lending/liquidity
+5. **Collect & Distribute** → Protocol collects yield daily
+6. **Auto-Rebase** → Your USDs balance increases automatically!
 
-## Roadmap
+### Yield Distribution
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md).
+| Recipient | Share | Purpose |
+|-----------|-------|---------|
+| USDs Holders | 70% | Distributed via auto-rebase |
+| SPA Buyback | 30% | Buy and burn SPA tokens |
 
-### 🔴 High Priority
-- **Integration tests for generated servers** — Validate MCP servers import correctly
+### Why It's Special
 
-### 🟡 Good First Issues
-- **More EVM chains** — Fantom, zkSync, Cronos, etc.
-- **More ABI sources** — Blockscout, 4byte.directory
-- **Example contracts** — Uniswap, Aave, Compound, OpenSea
-
-### 🚀 Future
-- **UCAI for Solana** — Generate from Anchor IDL
-- **UCAI for REST APIs** — Generate from OpenAPI specs
-- **TypeScript output** — Generate servers in JS/TS
-- **Batch generation** — Multiple contracts at once
-- **Event subscriptions** — Real-time WebSocket streaming
-
----
-
-## License
-
-MIT License — see [LICENSE](LICENSE).
+- ✅ **No claiming** — Yield appears in your wallet automatically
+- ✅ **No staking** — Just hold USDs in any wallet
+- ✅ **Composable** — Use USDs in DeFi while earning yield
+- ✅ **Fully backed** — 100%+ collateralized by stablecoins
+- ✅ **Transparent** — All operations visible on-chain
 
 ---
 
-## Acknowledgments
+## 🔗 Links
 
-Built with:
-- [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) — Official Model Context Protocol implementation
-- [web3.py](https://github.com/ethereum/web3.py) — Ethereum interaction
-- [Typer](https://typer.tiangolo.com/) — CLI framework
+| Resource | Link |
+|----------|------|
+| 🌐 Website | [sperax.io](https://sperax.io) |
+| 📖 Documentation | [docs.sperax.io](https://docs.sperax.io) |
+| 🚀 App | [app.sperax.io](https://app.sperax.io) |
+| 🐦 Twitter | [@SperaxUSD](https://twitter.com/SperaxUSD) |
+| 💬 Discord | [discord.gg/sperax](https://discord.gg/sperax) |
+| 📊 DeFiLlama | [defillama.com/protocol/sperax](https://defillama.com/protocol/sperax) |
+| 🔍 Arbiscan (USDs) | [arbiscan.io/token/0xD74f...5748](https://arbiscan.io/token/0xD74f5255D557944cf7Dd0E45FF521520002D5748) |
+| 🗳️ Governance | [snapshot.org/#/speraxdao.eth](https://snapshot.org/#/speraxdao.eth) |
+| 🐙 GitHub | [github.com/sperax](https://github.com/sperax) |
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <p align="center">
-  <strong>UCAI — The Universal Contract AI Interface</strong><br>
-  <em>Let AI talk to any contract, on any chain.</em><br><br>
-  <a href="https://github.com/nirholas/UCAI">⭐ Star on GitHub</a> •
-  <a href="https://pypi.org/project/abi-to-mcp/">📦 Install from PyPI</a> •
-  <a href="https://modelcontextprotocol.io">🔌 Learn about MCP</a>
+  <strong>Built with ❤️ by the Sperax Team</strong>
+</p>
+
+<p align="center">
+  <sub>Empowering Autonomous Finance on Arbitrum and BNB Chain</sub>
 </p>

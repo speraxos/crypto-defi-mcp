@@ -1,191 +1,137 @@
----
-title: UCAI
-description: The ABI-to-MCP Server Generator — Convert smart contract ABIs to AI-ready MCP servers
----
+# Sperax MCP Server
 
-# UCAI
+> **The official Model Context Protocol server for Sperax DeFi ecosystem**
 
-**The ABI-to-MCP Server Generator.** Generate AI-ready interfaces for any smart contract in seconds.
+Enable AI agents to interact with USDs (auto-yield stablecoin), SPA governance, veSPA staking, and Demeter yield farms on Arbitrum One.
 
-UCAI converts Ethereum smart contract ABIs into [Model Context Protocol (MCP)](https://modelcontextprotocol.io) servers, enabling AI assistants like Claude to interact with DeFi protocols, NFTs, tokens, and any on-chain contract.
+## Features
 
-<div class="grid cards" markdown>
+🪙 **USDs Stablecoin** - Query balances, yields, rebase mechanics, mint/redeem simulations
 
--   :material-clock-fast:{ .lg .middle } __Zero to MCP in 30 Seconds__
+⚡ **Auto-Yield** - 5%+ APY distributed automatically via daily rebase
 
-    ---
+🗳️ **veSPA Governance** - Vote-escrowed staking with 7-day to 4-year locks
 
-    One command generates a complete, production-ready server:
+🌾 **Demeter Farms** - Discover and analyze yield farming opportunities
 
-    ```bash
-    abi-to-mcp generate 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 -n mainnet
-    ```
+🏛️ **Vault System** - Collateral management and yield strategies
 
-    [:octicons-arrow-right-24: Quickstart](getting-started/quickstart.md)
+💰 **Yield Reserve** - Yield collection and distribution to USDs holders
 
--   :material-shield-check:{ .lg .middle } __Safety First__
+🔮 **Oracle Integration** - Chainlink price feeds and monitoring
 
-    ---
+## Quick Start
 
-    Write operations simulate by default. You explicitly opt-in to real transactions.
+### Claude Desktop
 
-    [:octicons-arrow-right-24: Safety features](concepts/safety.md)
+Add to your `claude_desktop_config.json`:
 
--   :material-network:{ .lg .middle } __10+ Networks__
-
-    ---
-
-    Ethereum, Polygon, Arbitrum, Optimism, Base, BSC, Avalanche, and more.
-
-    [:octicons-arrow-right-24: Supported networks](reference/networks.md)
-
--   :material-language-python:{ .lg .middle } __Python API__
-
-    ---
-
-    Programmatic access for custom workflows and integrations.
-
-    [:octicons-arrow-right-24: API reference](api/index.md)
-
-</div>
-
-## 🌐 Try It Online
-
-Don't want to install anything? Use the **[Web Builder](https://mcp.ucai.tech)** to generate MCP servers directly in your browser:
-
-<div class="grid cards" markdown>
-
--   :material-shield-search:{ .lg .middle } __Security Scanner__
-
-    ---
-
-    Detect rug pulls, honeypots, and 50+ risks before connecting your AI agent.
-
-    [:octicons-arrow-right-24: Learn more](concepts/security-scanner.md)
-
--   :material-book-open:{ .lg .middle } __Contract Whisperer__
-
-    ---
-
-    Get plain English explanations of what any contract does.
-
-    [:octicons-arrow-right-24: Web Builder guide](guides/web-builder.md)
-
--   :material-lightning-bolt:{ .lg .middle } __Pro Templates__
-
-    ---
-
-    Pre-built bundles for Flash Loans, Arbitrage, Yield Farming, and more.
-
-    [:octicons-arrow-right-24: Web Builder guide](guides/web-builder.md)
-
-</div>
-
-## What is MCP?
-
-The Model Context Protocol (MCP) is a standard for connecting AI assistants to external tools and data sources. When you generate an MCP server from a smart contract ABI, Claude can:
-
-- **Query** token balances, allowances, and contract state
-- **Inspect** NFT metadata and ownership
-- **Simulate** transactions before execution
-- **Execute** transfers, swaps, and other operations (with your approval)
-
-## Quick Example
-
-Here's what it looks like to use a generated MCP server with Claude:
-
-<div class="result" markdown>
-
-> **You:** What's the USDC balance of vitalik.eth?
-
-> **Claude:** I'll check the USDC balance for vitalik.eth.
-> 
-> Using `balance_of` tool with address `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`...
-> 
-> The balance is **2,547.32 USDC**.
-
-</div>
-
-## Installation
-
-=== "pip"
-
-    ```bash
-    pip install abi-to-mcp
-    ```
-
-=== "pipx"
-
-    ```bash
-    pipx install abi-to-mcp
-    ```
-
-=== "From source"
-
-    ```bash
-    git clone https://github.com/nirholas/UCAI.git
-    cd UCAI
-    pip install -e .
-    ```
-
-## Supported Contract Types
-
-abi-to-mcp works with any EVM smart contract, with special support for common standards:
-
-| Standard | Auto-Detection | Features |
-|----------|---------------|----------|
-| ERC-20   | ✅ Yes | Token transfers, approvals, balance queries |
-| ERC-721  | ✅ Yes | NFT ownership, metadata, safe transfers |
-| ERC-1155 | ✅ Yes | Multi-token operations, batch transfers |
-| ERC-4626 | ✅ Yes | Vault deposits, withdrawals, share calculations |
-| Custom   | ✅ Yes | All functions and events exposed as tools |
-
-## How It Works
-
-```mermaid
-graph LR
-    A[Smart Contract ABI] --> B[abi-to-mcp]
-    B --> C[MCP Server]
-    C --> D[Claude Desktop]
-    D --> E[Blockchain]
-    
-    style A fill:#627EEA,color:#fff
-    style B fill:#9C27B0,color:#fff
-    style C fill:#4CAF50,color:#fff
-    style D fill:#FF9800,color:#fff
-    style E fill:#627EEA,color:#fff
+```json
+{
+  "mcpServers": {
+    "sperax": {
+      "command": "npx",
+      "args": ["-y", "@sperax/mcp-server"]
+    }
+  }
+}
 ```
 
-1. **Fetch** - Retrieve the ABI from Etherscan, Sourcify, or a local file
-2. **Parse** - Analyze functions, events, and types
-3. **Map** - Convert Solidity types to JSON Schema and Python types
-4. **Generate** - Create a complete MCP server with all tools and resources
-5. **Run** - Start the server and connect it to Claude Desktop
+### Cursor / VSCode
 
-## Next Steps
+Add to MCP settings:
 
-<div class="grid cards" markdown>
+```json
+{
+  "mcp.servers": {
+    "sperax": {
+      "command": "npx",
+      "args": ["-y", "@sperax/mcp-server"]
+    }
+  }
+}
+```
 
--   [:octicons-rocket-24: __Getting Started__](getting-started/index.md)
+## Available Tools
 
-    Install and generate your first MCP server in 5 minutes.
+| Category | Tools | Description |
+|----------|-------|-------------|
+| USDs Stablecoin | 7 | Balance, yield, rebase, mint/redeem params |
+| Vault & Collateral | 10 | TVL, strategies, allocations, simulations |
+| SPA & Staking | 8 | Token info, veSPA positions, xSPA redemption |
+| Demeter Farms | 7 | Farm discovery, APR, positions, rewards |
+| Dripper | 5 | Rebase timing, earnings projections |
+| Oracle | 5 | Price feeds, staleness, deviation |
+| Analytics | 6 | TVL, revenue, APY history, health scores |
+| Governance | 5 | Proposals, voting power, delegates |
+| Yield Reserve | 4 | Swap quotes, token permissions, flow |
 
--   [:octicons-terminal-24: __CLI Reference__](cli/index.md)
+## Key Formulas
 
-    Complete documentation for all commands.
+### veSPA Voting Power
+```
+veSPA = SPA × (lockDays / 365)
+```
+Lock 1000 SPA for 4 years → Get 4000 veSPA
 
--   [:octicons-book-24: __Guides__](guides/index.md)
+### xSPA Redemption
+```
+SPA_out = xSPA × (vestingDays + 150) / 330
+```
+- 15 days → 50% SPA
+- 180 days → 100% SPA
 
-    Step-by-step tutorials for common use cases.
+### USDs Rebase
+Your balance automatically increases daily based on protocol yield. No claiming required!
 
--   [:octicons-code-24: __Python API__](api/index.md)
+## Contract Addresses (Arbitrum One)
 
-    Integrate UCAI into your own applications.
+| Contract | Address |
+|----------|---------|
+| USDs | `0xD74f5255D557944cf7Dd0E45FF521520002D5748` |
+| SPA | `0x5575552988A3A80504bBaeB1311674fCFd40aD4B` |
+| veSPA | `0x2e2071180682Ce6C247B1eF93d382D509F5F6A17` |
+| xSPA | `0x0966E72256d6055145902F72F9D3B6a194B9cCc3` |
+| Vault | `0x6Bbc476Ee35CBA9e9c3A59fc5b10d7a0BC6f74Ca` |
+| Demeter Registry | `0x45bC6B44107837E7aBB21E2CaCbe7612Fce222e0` |
 
-</div>
+## Documentation
 
-## Community
+### MCP Server
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/nirholas/UCAI/issues)
-- **Discussions**: [Ask questions and share ideas](https://github.com/nirholas/UCAI/discussions)
-- **Contributing**: [Help improve UCAI](contributing/index.md)
+- [Overview](mcp-server/index.md) - Installation & setup
+- [Tools Reference](mcp-server/tools.md) - Core Sperax tools
+- [Extended Tools](mcp-server/tools-extended.md) - Portfolio, Agents, News, Plugins
+- [EVM Module](mcp-server/evm-module.md) - General blockchain tools
+- [Greenfield Module](mcp-server/greenfield-module.md) - Decentralized storage
+- [Resources & Prompts](mcp-server/resources-prompts.md) - AI resources
+- [Development Guide](mcp-server/development.md) - Contributing
+
+### Protocol
+
+- [Protocol Overview](protocol/overview.md) - How Sperax works
+- [USDs Token](protocol/usds-token.md) - Auto-yield stablecoin
+- [Vault Core](protocol/vault-core.md) - Collateral management
+- [Collateral Manager](protocol/collateral-manager.md) - Collateral params
+- [Strategies](protocol/strategies.md) - Yield strategies
+- [Rebase Dripper](protocol/rebase-dripper.md) - Yield distribution
+- [Oracles](protocol/oracles.md) - Price feeds
+- [SPA Buyback](protocol/spa-buyback.md) - Token buyback
+- [SPA Staking](protocol/spa-staking.md) - veSPA/xSPA
+- [Demeter Farms](protocol/demeter-farms.md) - Yield farming
+- [Rewarder](protocol/rewarder.md) - Farm rewards
+- [Addresses](protocol/addresses.md) - Contract addresses
+- [Errors & Events](protocol/errors-events.md) - Reference
+
+### Contracts
+
+- [Contract Overview](contracts/index.md) - Contract summary
+- [ABIs](contracts/abis.md) - Contract interfaces
+
+## Links
+
+- 🌐 [Sperax Website](https://sperax.io)
+- 📖 [Protocol Documentation](https://docs.sperax.io)
+- 🐦 [Twitter](https://twitter.com/SperaxUSD)
+- 💬 [Discord](https://discord.gg/sperax)
+- 📊 [DeFiLlama](https://defillama.com/protocol/sperax)
