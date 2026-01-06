@@ -1,0 +1,73 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.speraxos/crypto-defi-mcp",
+  "description": "Query EVM chains, token transfers, smart contracts, Sperax DeFi & farming, Arbitrum, BNB",
+  "title": "Sperax Ecosystem MCP Servers - Crypto & DeFi",
+  "websiteUrl": "https://sperax.io",
+  "repository": {
+    "url": "https://github.com/nirholas/sperax-crypto-mcp",
+    "source": "github"
+  },
+  "version": "0.0.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@sperax/os",
+      "version": "0.0.1",
+      "runtimeHint": "bun",
+      "transport": {
+        "type": "streamable-http"
+      },
+      "environmentVariables": [
+        {
+          "name": "ETHEREUM_RPC_URL",
+          "description": "Ethereum, BNB Chain, Arbitrum One RPC endpoint (optional - uses public RPC by default)",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "CRYPTO_PRIVATE_KEY",
+          "description": "Private key for BNB Chain operations (optional)",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "tool": "manual",
+      "version": "1.0.0",
+      "build_info": {
+        "timestamp": "2026-01-06T00:00:00Z",
+        "total_tools": 74,
+        "categories": [
+          "Stablecoin",
+          "Governance", 
+          "Yield Farming",
+          "Vault Operations",
+          "Oracle Prices",
+          "Analytics",
+          "DeFi",
+          "Agents",
+          "Cryptocurrency",
+          "Plugin",
+          "Crypto News",
+          "Blockchain",
+          "Smart Contracts",
+          "Token Transfers",
+          "Wallet",
+          "Staking",
+          "Liquidity",
+          "Web3",
+          "Multi-chain",
+          "Arbitrum",
+          "BNB Chain",
+          "Decentralized Storage",
+          "EVM"
+        ]
+      }
+    }
+  }
+}

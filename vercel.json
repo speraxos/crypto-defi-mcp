@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/mcp",
+      "dest": "/api/mcp.ts"
+    }
+  ],
+  "env": {
+    "ARBITRUM_RPC_URL": "@arbitrum_rpc_url",
+    "ETHEREUM_RPC_URL": "@ethereum_rpc_url"
+  }
+}
