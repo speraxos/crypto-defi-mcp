@@ -34,28 +34,31 @@
 
 **[mcp.ucai.tech](https://mcp.ucai.tech)** — Generate MCP servers directly in your browser.
 
+
 ```
-┌───────────────────────────────────────────────────────────────────────────────
-│                                                                                
-│   🌐 MCP BUILDER                                          [Connect Wallet]     
-│                                                                                
-│   ┌────────────────────────────────────────────────────────────────────────────  
-│   │  ⚡ Pro Templates    │    🔧 Custom Contract                                
-│   └────────────────────────────────────────────────────────────────────────────  
-│                                                                               
-│   🛡️ Security Scanner: Score 87/100 ✅ Low Risk                                
-│   ├── ✅ Contract verified on Etherscan                                         
-│   ├── ✅ Uses OpenZeppelin (audited)                                            
-│   ├── ⚠️  Owner can pause transfers                                             
-│   └── ⚠️  Mint function detected                                                
-│                                                                                 
-│   📖 What This Contract Does:                                                  
-│   "ERC-20 token with standard transfer, approve, and allowance functions."     
-│                                                                                
-│   [📥 Download Server]  [🔗 Share Link]  [📋 Copy Config]                       
-│                                                                                
-└────────────────────────────────────────────────────────────────────────────────
++--------------------------------------------------------------------------+
+|                                                                          |
+|   MCP BUILDER                                         [Connect Wallet]   |
+|                                                                          |
+|   +---------------------------+--------------------------------------+   |
+|   |  Pro Templates            |    Custom Contract                   |   |
+|   +---------------------------+--------------------------------------+   |
+|                                                                          |
+|   Security Scanner: Score 87/100 - Low Risk                              |
+|   |-- Contract verified on Etherscan                                     |
+|   |-- Uses OpenZeppelin (audited)                                        |
+|   |-- Owner can pause transfers (warning)                                |
+|   +-- Mint function detected (warning)                                   |
+|                                                                          |
+|   What This Contract Does:                                               |
+|   "ERC-20 token with standard transfer, approve, and allowance           |
+|    functions."                                                           |
+|                                                                          |
+|   [Download Server]  [Share Link]  [Copy Config]                         |
+|                                                                          |
++--------------------------------------------------------------------------+
 ```
+
 
 **Features:**
 - 🛡️ **Security Scanner** — Detects rug pulls, honeypots, and 50+ risks before you connect
