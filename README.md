@@ -21,6 +21,8 @@
 [![UCAI Standard](https://img.shields.io/badge/UCAI-Standard-blue.svg)](#-the-ucai-standard)
 
 <p align="center">
+  <a href="https://registry.modelcontextprotocol.io/?q=nirholas"><strong>☑️ UCAI in Anthropic MCP Registry</strong></a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="https://mcp.ucai.tech"><strong>🌐 Try the Web Builder →</strong></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="https://docs.ucai.tech"><strong>📖 Documentation</strong></a>
